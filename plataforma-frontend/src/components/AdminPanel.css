@@ -1,0 +1,63 @@
+.admin-container {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: white;
+}
+
+.admin-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  width: 100%;
+}
+
+.admin-form button {
+  grid-column: 1 / -1; 
+  padding: 12px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.admin-form input, .admin-form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: rgba(0,0,0,0.2);
+  color: white;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.user-table th, .user-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.super_admin { background: #e11d48; }
+.admin { background: #3b82f6; }
+.tutor { background: #10b981; }

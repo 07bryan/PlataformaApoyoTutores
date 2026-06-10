@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Esto evita que el padding sume tamaño extra */
+}
+
+.login-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column; /* IMPORTANTE: Esto apila el título y la tarjeta verticalmente */
+  align-items: center;
+  justify-content: center; /* Centra todo verticalmente */
+  background: linear-gradient(135deg, #2c5364, #4a7a8d);
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.login-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%;          /* Adaptable a móviles */
+  max-width: 400px;    /* Límite máximo */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.login-title { color: #fff; margin-bottom: 5px; }
+.login-subtitle { color: #aaa; margin-bottom: 25px; font-size: 0.9rem; }
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: rgba(0,0,0,0.2);
+  color: white;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover { background: #2563eb; }
+
+.error-msg {
+  background: #ef4444;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+}
+
+.login-logo {
+  width: 120px; /* Ajusta el tamaño según necesites */
+  height: auto;
+  margin: 0 auto 20px auto; /* Centrado y con margen inferior */
+  display: block;
+  border-radius: 50%; /* Opcional: si el logo es circular */
+}
+
+/* Ajusta el título para que no quede tan pegado al logo */
+.login-title { 
+  margin-top: 0;
+  color: #fff; 
+  margin-bottom: 5px; 
+}
