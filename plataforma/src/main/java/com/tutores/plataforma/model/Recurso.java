@@ -31,4 +31,27 @@ public class Recurso {
     private String urlSolucionario;
 
     // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public Materia getMateria() { return materia; }
+    public void setMateria(Materia materia) { this.materia = materia; }
+
+    public String getTipoRecurso() { return tipoRecurso; }
+    public void setTipoRecurso(String tipoRecurso) { this.tipoRecurso = tipoRecurso; }
+
+    public String getNombreRecurso() { return nombreRecurso; }
+    public void setNombreRecurso(String nombreRecurso) { this.nombreRecurso = nombreRecurso; }
+
+    public String getTematicas() { return tematicas; }
+    public void setTematicas(String tematicas) { this.tematicas = tematicas; }
+
+    public String getPeriodo() { return periodo; }
+    public void setPeriodo(String periodo) { this.periodo = periodo; }
+
+    public String getUrlArchivoPdf() { return urlArchivoPdf; }
+    public void setUrlArchivoPdf(String urlArchivoPdf) { this.urlArchivoPdf = urlArchivoPdf; }
+
+    public String getUrlSolucionario() { return urlSolucionario; }
+    public void setUrlSolucionario(String urlSolucionario) { this.urlSolucionario = urlSolucionario; }
 }

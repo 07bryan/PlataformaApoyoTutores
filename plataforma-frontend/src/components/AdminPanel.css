@@ -61,3 +61,52 @@
 .super_admin { background: #e11d48; }
 .admin { background: #3b82f6; }
 .tutor { background: #10b981; }
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  border: 2px dashed #444; /* Borde punteado para indicar zona de acción */
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.btn-add {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #10b981; /* Un verde que resalte */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tabla-datos {
+    color: #333333; /* Color oscuro profesional */
+}

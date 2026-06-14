@@ -1,0 +1,68 @@
+.adminContainer {
+  padding: 20px;
+  color: #333;
+}
+
+.adminCard {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.adminForm {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.adminForm input, .adminForm select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.adminForm button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.userTable th, .userTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.btnDelete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 20px;
+}
+
+.btnAdd {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

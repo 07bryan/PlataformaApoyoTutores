@@ -2,11 +2,13 @@ package com.tutores.plataforma.repository;
 
 import com.tutores.plataforma.model.Planeacion;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import java.util.List;
 
-@Repository
 public interface PlaneacionRepository extends JpaRepository<Planeacion, String> {
-    // Permite listar todas las tutorías planeadas por un tutor específico
-    List<Planeacion> findByIdUsuario(String idUsuario);
+
+    // Cambiamos el nombre del método y usamos una consulta JPQL explícita
+    @Query("SELECT p FROM Planeacion p WHERE p.usuario.id = :userId")
+    List<Planeacion> findByUsuarioId(@Param("userId") String userId);
 }

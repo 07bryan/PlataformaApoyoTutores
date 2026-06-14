@@ -38,4 +38,16 @@ public class Planeacion {
     private String observacionesAcuerdos;
 
     // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario u) { this.usuario = u; }
+    public Materia getMateria() { return materia; }
+    public void setMateria(Materia m) { this.materia = m; }
+    public Date getFechaTutoria() { return fechaTutoria; }
+    public void setFechaTutoria(Date f) { this.fechaTutoria = f; }
+    public String getNombreEstudiante() { return nombreEstudiante; }
+    public void setNombreEstudiante(String ne) { this.nombreEstudiante = ne; }
+    public String getObjetivoAprendizaje() { return objetivoAprendizaje; }
+    public void setObjetivoAprendizaje(String oa) { this.objetivoAprendizaje = oa; }
 }
