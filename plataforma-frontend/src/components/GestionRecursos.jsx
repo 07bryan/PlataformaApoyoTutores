@@ -114,7 +114,7 @@ export default function GestionRecursos() {
 
             <table className={styles.userTable}>
                 <thead>
-                    <tr><th>Nombre</th><th>Archivo</th><th>Materia</th><th>Acciones</th></tr>
+                    <tr><th>Nombre</th><th>Archivo</th><th>Materia</th><th>Universidad</th><th>Acciones</th></tr>
                 </thead>
                 <tbody>
                     {recursos.map(r => (
@@ -131,6 +131,7 @@ export default function GestionRecursos() {
                                 </a>
                             </td>
                             <td>{r.materia?.nombre || 'N/A'}</td>
+                            <td>{r.materia?.universidad?.nombre || 'N/A'}</td>
                             <td>
                                 <button
                                     onClick={() => eliminarRecurso(r.id)}
