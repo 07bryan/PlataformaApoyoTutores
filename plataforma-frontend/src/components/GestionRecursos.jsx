@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import styles from './GestionRecursos.module.css';
+import './Modal.css';
 
 export default function GestionRecursos() {
     const [recursos, setRecursos] = useState([]);
     const [materias, setMaterias] = useState([]);
+    const [modalMateriasAbierta, setModalMateriasAbierta] = useState(false);
 
     // Estados del formulario
     const [nombre, setNombre] = useState('');
     const [archivo, setArchivo] = useState(null);
     const [idMateria, setIdMateria] = useState('');
+    const [materiaSeleccionada, setMateriaSeleccionada] = useState(null);
     const [cargando, setCargando] = useState(false);
 
     // Referencia para limpiar el input de archivo
@@ -30,6 +33,12 @@ export default function GestionRecursos() {
         } catch (error) {
             console.error("Error al cargar datos", error);
         }
+    };
+
+    const seleccionarMateria = (materia) => {
+        setMateriaSeleccionada(materia);
+        setIdMateria(materia.id);
+        setModalMateriasAbierta(false);
     };
 
     const subirArchivo = async () => {
@@ -94,11 +103,9 @@ export default function GestionRecursos() {
                     ref={fileInputRef}
                     onChange={e => setArchivo(e.target.files[0])}
                 />
-
-                <select value={idMateria} onChange={e => setIdMateria(e.target.value)}>
-                    <option value="">Seleccione Materia</option>
-                    {materias.map(m => <option key={m.id} value={m.id}>{m.nombre}</option>)}
-                </select>
+                <button type="button" onClick={() => setModalMateriasAbierta(true)}>
+                    {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
+                </button>
 
                 <button onClick={subirArchivo} disabled={cargando}>
                     {cargando ? "Subiendo..." : "Subir Recurso"}
@@ -136,6 +143,29 @@ export default function GestionRecursos() {
                     ))}
                 </tbody>
             </table>
+            {modalMateriasAbierta && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3>Seleccionar Materia</h3>
+                            <button onClick={() => setModalMateriasAbierta(false)}>×</button>
+                        </div>
+                        <table className={styles.userTable}>
+                            <thead>
+                                <tr><th>Materia</th><th>Universidad</th></tr>
+                            </thead>
+                            <tbody>
+                                {materias.map(m => (
+                                    <tr key={m.id} onClick={() => seleccionarMateria(m)} style={{ cursor: 'pointer' }}>
+                                        <td>{m.nombre}</td>
+                                        <td>{m.universidad?.nombre || 'N/A'}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

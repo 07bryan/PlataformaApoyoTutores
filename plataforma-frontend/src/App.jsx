@@ -57,7 +57,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/inicio" element={<Dashboard />} />
-            <Route path="/planeacion" element={<Planeacion />} />
             <Route path="/herramientas" element={<Herramientas />} />
             <Route path="/autocuidado" element={<Autocuidado />} />
             
