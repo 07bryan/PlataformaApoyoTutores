@@ -1,0 +1,78 @@
+/* GestionRecursos.module.css */
+
+.adminContainer {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.adminCard {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.adminCard input, 
+.adminCard select, 
+.adminCard button {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.adminCard button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.adminCard button:hover {
+    background-color: #0056b3;
+}
+
+.adminCard button:disabled {
+    background-color: #a0c2e6;
+    cursor: not-allowed;
+}
+
+/* Tabla */
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.userTable th, .userTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.userTable th {
+    background-color: #f4f4f4;
+}
+
+/* Botón Eliminar */
+.btnEliminar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btnEliminar:hover {
+    background-color: #c82333;
+}

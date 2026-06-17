@@ -24,6 +24,9 @@ export default function Sidebar({ rol }) {
             <Link to="/gestion-universidades" className={location.pathname === '/gestion-universidades' ? 'active' : ''}>
               Gestión Universidades
             </Link>
+            <Link to="/gestion-recursos" className={location.pathname === '/gestion-recursos' ? 'active' : ''}>
+              Gestión Recursos
+            </Link>
           </>
         )}
       </nav>
