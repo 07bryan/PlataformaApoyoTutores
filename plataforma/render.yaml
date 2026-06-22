@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: plataforma-apoyo-tutores
+    runtime: java
+    buildCommand: "./mvnw clean install -DskipTests"
+    startCommand: "java -jar target/plataforma-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://ep-flat-pine-ahz0dddc.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require
+      - key: SPRING_DATASOURCE_USERNAME
+        value: neondb_owner
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: npg_BT54WslxCVDK
