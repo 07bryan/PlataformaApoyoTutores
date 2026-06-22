@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/usuarios") // Ruta base más lógica para esta tabla
 
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
     @Autowired
