@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import './Login.css';
 import logo from '../assets/Logo.jpeg';
 
@@ -11,7 +11,7 @@ function Login({ onLoginSuccess }) { // Desestructuramos el prop
   const manejarEnvio = async (e) => {
     e.preventDefault();
     try {
-      const respuesta = await axios.post('http://localhost:8080/api/auth/login', { correo, password });
+      const respuesta = await api.post('/api/auth/login', { correo, password });
       const usuario = respuesta.data;
 
       // GUARDADO PERSISTENTE:

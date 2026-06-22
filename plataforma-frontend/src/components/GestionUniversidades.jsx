@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import styles from './GestionUniversidades.module.css';
 
 export default function GestionUniversidades() {
@@ -13,7 +13,7 @@ export default function GestionUniversidades() {
 
   const cargarUniversidades = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/universidades/listar');
+      const res = await api.get('/api/universidades/listar');
       setUniversidades(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
       console.error("Error al cargar:", error);
@@ -23,7 +23,7 @@ export default function GestionUniversidades() {
 
   const guardarUniversidad = async () => {
     try {
-      await axios.post('http://localhost:8080/api/universidades/crear', nuevaUniv);
+      await api.post('/api/universidades/crear', nuevaUniv);
       setIsModalOpen(false);
       setNuevaUniv({ nombre: '' });
       cargarUniversidades();
@@ -35,7 +35,7 @@ export default function GestionUniversidades() {
   const eliminarUniversidad = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar esta universidad?")) {
       try {
-        await axios.delete(`http://localhost:8080/api/universidades/eliminar/${id}`);
+        await api.delete(`/api/universidades/eliminar/${id}`);
         cargarUniversidades();
       } catch (error) {
         alert("No se pudo eliminar. Verifica si hay materias vinculadas.");

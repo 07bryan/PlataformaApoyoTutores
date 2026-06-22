@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import styles from './GestionRecursos.module.css';
 import './Modal.css';
 
@@ -25,8 +25,8 @@ export default function GestionRecursos() {
     const cargarDatos = async () => {
         try {
             const [resRec, resMat] = await Promise.all([
-                axios.get('http://localhost:8080/api/recursos/listar'),
-                axios.get('http://localhost:8080/api/materias/listar')
+                api.get('/api/recursos/listar'),
+                api.get('/api/materias/listar')
             ]);
             setRecursos(resRec.data);
             setMaterias(resMat.data);
@@ -54,7 +54,7 @@ export default function GestionRecursos() {
         formData.append('idMateria', idMateria);
 
         try {
-            await axios.post('http://localhost:8080/api/recursos/subir', formData, {
+            await api.post('/api/recursos/subir', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
@@ -78,7 +78,7 @@ export default function GestionRecursos() {
         if (!window.confirm("¿Estás seguro de eliminar este recurso?")) return;
 
         try {
-            await axios.delete(`http://localhost:8080/api/recursos/eliminar/${id}`);
+            await api.delete(`/api/recursos/eliminar/${id}`);
             cargarDatos(); // Recargar la tabla tras eliminar
             alert("Recurso eliminado correctamente");
         } catch (error) {

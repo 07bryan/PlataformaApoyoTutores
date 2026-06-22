@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import './AdminPanel.css';
 
 function AdminPanel() {
@@ -14,14 +14,14 @@ function AdminPanel() {
   useEffect(() => { cargarUsuarios(); }, []);
 
   const cargarUsuarios = async () => {
-    const res = await axios.get('http://localhost:8080/api/usuarios/listar');
+    const res = await api.get('/api/usuarios/listar');
     setUsuarios(res.data);
   };
 
   const crearUsuario = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/api/usuarios/admin/crear', nuevoUsuario, {
+      await api.post('/api/usuarios/admin/crear', nuevoUsuario, {
         headers: { 'rol-admin': 'SUPER_ADMIN' }
       });
       alert("Usuario creado con éxito");
@@ -35,7 +35,7 @@ function AdminPanel() {
   const eliminarUsuario = async (id) => {
   if (window.confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
     try {
-      await axios.delete(`http://localhost:8080/api/usuarios/admin/eliminar/${id}`, {
+      await api.delete(`/api/usuarios/admin/eliminar/${id}`, {
         headers: { 'rol-admin': 'SUPER_ADMIN' }
       });
       cargarUsuarios(); // Recargamos la lista

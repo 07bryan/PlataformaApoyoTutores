@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import styles from './GestionAcademica.module.css';
 
 export default function GestionAcademica() {
@@ -18,8 +18,8 @@ export default function GestionAcademica() {
     const cargarDatos = async () => {
         try {
             const [resUniv, resMat] = await Promise.all([
-                axios.get('http://localhost:8080/api/universidades/listar'),
-                axios.get('http://localhost:8080/api/materias/listar')
+                api.get('/api/universidades/listar'),
+                api.get('/api/materias/listar')
             ]);
             setUniversidades(Array.isArray(resUniv.data) ? resUniv.data : []);
             setMaterias(Array.isArray(resMat.data) ? resMat.data : []);
@@ -35,7 +35,7 @@ export default function GestionAcademica() {
             return;
         }
         try {
-            await axios.post('http://localhost:8080/api/materias/crear', nuevaMateria);
+            await api.post('/api/materias/crear', nuevaMateria);
             setNuevaMateria({ nombre: '', creditos: 0, semestre: 1, idUniversidad: '' });
             cargarDatos();
         } catch (error) {
@@ -45,7 +45,7 @@ export default function GestionAcademica() {
 
     const eliminarMateria = async (id) => {
         if (window.confirm("¿Seguro que deseas eliminar esta materia?")) {
-            await axios.delete(`http://localhost:8080/api/materias/eliminar/${id}`);
+            await api.delete(`/api/materias/eliminar/${id}`);
             cargarDatos();
         }
     };

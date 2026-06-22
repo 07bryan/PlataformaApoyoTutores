@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import './Herramientas.css';
 
 export default function Herramientas() {
@@ -12,7 +12,7 @@ export default function Herramientas() {
 
   const cargarRecursos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/recursos/listar');
+      const res = await api.get('/api/recursos/listar');
       setRecursos(res.data);
     } catch (error) {
       console.error("Error al cargar recursos", error);
