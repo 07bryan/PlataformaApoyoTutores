@@ -74,6 +74,22 @@ export default function GestionRecursos() {
         }
     };
 
+    const editarNombre = async (recurso) => {
+        const nuevoNombre = prompt("Introduce el nuevo nombre:", recurso.nombreRecurso);
+        if (!nuevoNombre || nuevoNombre === recurso.nombreRecurso) return;
+
+        try {
+            await api.put(`/api/recursos/editar/${recurso.id}`, null, {
+                params: { nuevoNombre }
+            });
+            cargarDatos();
+            alert("Nombre actualizado correctamente");
+        } catch (error) {
+            console.error("Error al editar", error);
+            alert("No se pudo actualizar el nombre");
+        }
+    };
+
     const eliminarRecurso = async (id) => {
         if (!window.confirm("¿Estás seguro de eliminar este recurso?")) return;
 
@@ -133,12 +149,8 @@ export default function GestionRecursos() {
                             <td>{r.materia?.nombre || 'N/A'}</td>
                             <td>{r.materia?.universidad?.nombre || 'N/A'}</td>
                             <td>
-                                <button
-                                    onClick={() => eliminarRecurso(r.id)}
-                                    className={styles.btnEliminar} 
-                                >
-                                    Eliminar
-                                </button>
+                                <button onClick={() => editarNombre(r)} className={styles.btnEditar}>Editar</button>
+                                <button onClick={() => eliminarRecurso(r.id)} className={styles.btnEliminar}>Eliminar</button>
                             </td>
                         </tr>
                     ))}

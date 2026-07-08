@@ -136,6 +136,20 @@ public class RecursoController {
         }
     }*/
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarRecurso(
+            @PathVariable String id,
+            @RequestParam String nuevoNombre) {
+
+        return recursoRepository.findById(id)
+                .map(recurso -> {
+                    recurso.setNombreRecurso(nuevoNombre);
+                    recursoRepository.save(recurso);
+                    return ResponseEntity.ok("Nombre actualizado");
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarRecurso(@PathVariable String id) {
         // 1. Buscar el recurso para obtener la ruta del archivo
