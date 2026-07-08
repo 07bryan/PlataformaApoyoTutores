@@ -60,7 +60,7 @@ export default function Herramientas() {
                     <td>{r.materia?.nombre || 'N/A'}</td>
                     <td>{r.nombreRecurso}</td>
                     <td>
-                      <a href={`http://localhost:8080${r.urlArchivoPdf}`} download target="_blank" rel="noopener noreferrer">
+                      <a href={`${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`} download target="_blank" rel="noopener noreferrer">
                         Descargar
                       </a>
                     </td>
