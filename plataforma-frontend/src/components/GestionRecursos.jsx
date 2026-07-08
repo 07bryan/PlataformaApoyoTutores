@@ -122,7 +122,7 @@ export default function GestionRecursos() {
                             <td>{r.nombreRecurso}</td>
                             <td>
                                 <a
-                                    href={encodeURI(`${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`)}
+                                    href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`}
                                     download={r.nombreRecurso || "recurso"} 
                                     target="_blank"
                                     rel="noopener noreferrer"
