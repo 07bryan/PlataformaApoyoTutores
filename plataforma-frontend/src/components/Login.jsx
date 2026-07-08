@@ -25,7 +25,7 @@ function Login({ onLoginSuccess }) { // Desestructuramos el prop
   };
   return (
     <div className="login-container">
-      <h1 className="titulo-sistema">Sistema Integrado - Plataforma de Tutores</h1>
+      <h1 className="titulo-sistema">Herramientas para tutores</h1>
       <form className="login-card" onSubmit={manejarEnvio}>
         <img src={logo} alt="Logo Fundación" className="login-logo" />
         <h2 className="login-title">Bienvenido</h2>
