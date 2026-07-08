@@ -1,5 +1,7 @@
 package com.tutores.plataforma.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.tutores.plataforma.model.Materia;
 import com.tutores.plataforma.model.Recurso;
 import com.tutores.plataforma.repository.MateriaRepository;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -31,12 +34,50 @@ public class RecursoController {
     @Autowired
     private MateriaRepository materiaRepository;
 
+    @Autowired
+    private Cloudinary cloudinary;
+
     @GetMapping("/listar")
     public List<Recurso> listarTodos() {
         return recursoRepository.findAll();
     }
 
     @PostMapping("/subir")
+    public ResponseEntity<?> subirRecurso(
+            @RequestParam("archivo") MultipartFile archivo,
+            @RequestParam("nombre") String nombre,
+            @RequestParam("idMateria") String idMateria) {
+
+        try {
+            // 1. Subir a Cloudinary
+            // El mapa de configuración permite decirle a Cloudinary que es un archivo PDF/RAW
+            Map uploadResult = cloudinary.uploader().upload(archivo.getBytes(),
+                    ObjectUtils.asMap("resource_type", "auto"));
+
+            // 2. Obtener la URL pública que nos devuelve Cloudinary
+            String urlPublica = (String) uploadResult.get("secure_url");
+
+            // 3. Crear entidad Recurso (la URL ya es la absoluta y permanente)
+            Recurso recurso = new Recurso();
+            recurso.setId("REC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
+            recurso.setNombreRecurso(nombre);
+            // ... (resto de tu lógica de asignación)
+
+            // AQUÍ EL CAMBIO CRÍTICO: guardas la URL de Cloudinary, no el path local
+            recurso.setUrlArchivoPdf(urlPublica);
+
+            Materia materia = materiaRepository.findById(idMateria)
+                    .orElseThrow(() -> new RuntimeException("Materia no encontrada"));
+            recurso.setMateria(materia);
+
+            return ResponseEntity.ok(recursoRepository.save(recurso));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al subir a la nube: " + e.getMessage());
+        }
+    }
+
+    /*@PostMapping("/subir")
     public ResponseEntity<?> subirRecurso(
             @RequestParam("archivo") MultipartFile archivo,
             @RequestParam("nombre") String nombre,
@@ -85,7 +126,7 @@ public class RecursoController {
             logger.error("Error al procesar la subida", e);
             return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
-    }
+    }*/
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarRecurso(@PathVariable String id) {

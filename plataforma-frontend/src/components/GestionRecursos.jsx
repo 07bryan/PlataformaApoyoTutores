@@ -122,8 +122,8 @@ export default function GestionRecursos() {
                             <td>{r.nombreRecurso}</td>
                             <td>
                                 <a
-                                    href={`http://localhost:8080${r.urlArchivoPdf}`}
-                                    download={r.nombreRecurso || "recurso"} // El atributo 'download' fuerza la descarga
+                                    href={encodeURI(`${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`)}
+                                    download={r.nombreRecurso || "recurso"} 
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -135,7 +135,7 @@ export default function GestionRecursos() {
                             <td>
                                 <button
                                     onClick={() => eliminarRecurso(r.id)}
-                                    className={styles.btnEliminar} // Asegúrate de tener estilos para esto
+                                    className={styles.btnEliminar} 
                                 >
                                     Eliminar
                                 </button>
