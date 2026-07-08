@@ -73,6 +73,7 @@ public class RecursoController {
             return ResponseEntity.ok(recursoRepository.save(recurso));
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body("Error al subir a la nube: " + e.getMessage());
         }
     }

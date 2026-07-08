@@ -55,7 +55,7 @@ export default function GestionRecursos() {
 
         try {
             await api.post('/api/recursos/subir', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+                //headers: { 'Content-Type': 'multipart/form-data' }
             });
 
             // Limpiar formulario
