@@ -50,22 +50,29 @@ public class RecursoController {
 
         try {
             // 1. Subir a Cloudinary
-            // El mapa de configuración permite decirle a Cloudinary que es un archivo PDF/RAW
             Map uploadResult = cloudinary.uploader().upload(archivo.getBytes(),
                     ObjectUtils.asMap("resource_type", "auto"));
 
-            // 2. Obtener la URL pública que nos devuelve Cloudinary
             String urlPublica = (String) uploadResult.get("secure_url");
 
-            // 3. Crear entidad Recurso (la URL ya es la absoluta y permanente)
+            // 2. Extraer extensión automáticamente (LA LÓGICA QUE FALTABA)
+            String originalName = archivo.getOriginalFilename();
+            String extension = (originalName != null && originalName.contains("."))
+                    ? originalName.substring(originalName.lastIndexOf(".") + 1).toUpperCase()
+                    : "FILE";
+
+            // 3. Crear entidad Recurso
             Recurso recurso = new Recurso();
             recurso.setId("REC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
             recurso.setNombreRecurso(nombre);
-            // ... (resto de tu lógica de asignación)
-
-            // AQUÍ EL CAMBIO CRÍTICO: guardas la URL de Cloudinary, no el path local
             recurso.setUrlArchivoPdf(urlPublica);
 
+            // ASIGNAR CAMPOS OBLIGATORIOS (Aquí estaba el error)
+            recurso.setTipoRecurso(extension);
+            recurso.setTematicas("General");
+            recurso.setPeriodo("2026-1");
+
+            // 4. Vincular Materia
             Materia materia = materiaRepository.findById(idMateria)
                     .orElseThrow(() -> new RuntimeException("Materia no encontrada"));
             recurso.setMateria(materia);
