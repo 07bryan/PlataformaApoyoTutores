@@ -75,15 +75,27 @@ export default function GestionAcademica() {
             <section className={styles.adminCard}>
                 <h3>Agregar Nueva Materia</h3>
                 <form className={styles.adminForm} onSubmit={manejarSubmit}>
-                    <input ref={inputRef} placeholder="Nombre Materia" value={nuevaMateria.nombre} onChange={e => setNuevaMateria({ ...nuevaMateria, nombre: e.target.value })} required />
-                    <input type="number" placeholder="Créditos" value={nuevaMateria.creditos} onChange={e => setNuevaMateria({ ...nuevaMateria, creditos: parseInt(e.target.value) || 0 })} required />
-                    <input type="number" placeholder="Semestre" value={nuevaMateria.semestre} onChange={e => setNuevaMateria({ ...nuevaMateria, semestre: parseInt(e.target.value) || 1 })} required />
-                    <select value={nuevaMateria.idUniversidad} onChange={e => setNuevaMateria({ ...nuevaMateria, idUniversidad: e.target.value })} required>
-                        <option value="">Seleccione Universidad</option>
-                        {Array.isArray(universidades) && universidades.map(u => (
-                            <option key={u.id} value={u.id}>{u.nombre}</option>
-                        ))}
-                    </select>
+                    <label>
+                        Nombre:
+                        <input ref={inputRef} placeholder="Nombre Materia" value={nuevaMateria.nombre} onChange={e => setNuevaMateria({ ...nuevaMateria, nombre: e.target.value })} required />
+                    </label>
+                    <label>
+                        Créditos:
+                        <input type="number" placeholder="Créditos" value={nuevaMateria.creditos} onChange={e => setNuevaMateria({ ...nuevaMateria, creditos: parseInt(e.target.value) || 0 })} required />
+                    </label>
+                    <label>
+                        Semestre:
+                        <input type="number" placeholder="Semestre" value={nuevaMateria.semestre} onChange={e => setNuevaMateria({ ...nuevaMateria, semestre: parseInt(e.target.value) || 1 })} required />
+                    </label>
+                    <label>
+                        Universidad:
+                        <select value={nuevaMateria.idUniversidad} onChange={e => setNuevaMateria({ ...nuevaMateria, idUniversidad: e.target.value })} required>
+                            <option value="">Seleccione Universidad</option>
+                            {Array.isArray(universidades) && universidades.map(u => (
+                                <option key={u.id} value={u.id}>{u.nombre}</option>
+                            ))}
+                        </select>
+                    </label>
                     <button type="submit">Guardar Materia</button>
                 </form>
             </section>
@@ -125,8 +137,8 @@ export default function GestionAcademica() {
                 )}
             </section>
             {materiaAEditar && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
+                <div className={styles.modalOverlay}>
+                    <div className={styles.modalContent}>
                         <h3>Editar Materia</h3>
                         <input value={materiaAEditar.nombre} onChange={e => setMateriaAEditar({ ...materiaAEditar, nombre: e.target.value })} />
                         <input type="number" value={materiaAEditar.creditos} onChange={e => setMateriaAEditar({ ...materiaAEditar, creditos: parseInt(e.target.value) })} />
@@ -134,8 +146,10 @@ export default function GestionAcademica() {
                         <select value={materiaAEditar.idUniversidad} onChange={e => setMateriaAEditar({ ...materiaAEditar, idUniversidad: e.target.value })}>
                             {universidades.map(u => <option key={u.id} value={u.id}>{u.nombre}</option>)}
                         </select>
-                        <button onClick={guardarEdicion}>Guardar</button>
-                        <button onClick={() => setMateriaAEditar(null)}>Cancelar</button>
+                        <div className={styles.modalActions}>
+                            <button className={styles.btnCancelar} onClick={() => setMateriaAEditar(null)}>Cancelar</button>
+                            <button className={styles.btnGuardar} onClick={guardarEdicion}>Guardar</button>
+                        </div>
                     </div>
                 </div>
             )}
