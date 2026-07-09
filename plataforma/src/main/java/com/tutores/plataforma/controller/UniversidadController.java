@@ -40,6 +40,20 @@ public class UniversidadController {
         }
     }
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarUniversidad(
+            @PathVariable String id,
+            @RequestParam String nuevoNombre) {
+
+        return universidadRepository.findById(id)
+                .map(univ -> {
+                    univ.setNombre(nuevoNombre);
+                    universidadRepository.save(univ);
+                    return ResponseEntity.ok("Universidad actualizada correctamente");
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     // 3. Eliminar universidad
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarUniversidad(@PathVariable String id) {

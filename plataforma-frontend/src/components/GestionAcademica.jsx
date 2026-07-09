@@ -42,6 +42,24 @@ export default function GestionAcademica() {
             alert("Error al guardar la materia.");
         }
     };
+    const [materiaAEditar, setMateriaAEditar] = useState(null);
+
+    // Función para abrir el modal de edición
+    const iniciarEdicion = (materia) => {
+        setMateriaAEditar({ ...materia, idUniversidad: materia.universidad?.id });
+    };
+
+    // Función para guardar cambios
+    const guardarEdicion = async () => {
+        try {
+            await api.put(`/api/materias/editar/${materiaAEditar.id}`, materiaAEditar);
+            setMateriaAEditar(null);
+            cargarDatos();
+            alert("Materia actualizada");
+        } catch (error) {
+            alert("Error al actualizar la materia.");
+        }
+    };
 
     const eliminarMateria = async (id) => {
         if (window.confirm("¿Seguro que deseas eliminar esta materia?")) {
@@ -92,9 +110,8 @@ export default function GestionAcademica() {
                             {/* Acceso a la propiedad de la universidad vinculada */}
                             <td>{m.universidad ? m.universidad.nombre : 'Sin asignar'}</td>
                             <td>
-                                <button className={styles.btnDelete} onClick={() => eliminarMateria(m.id)}>
-                                    Eliminar
-                                </button>
+                                <button onClick={() => iniciarEdicion(m)} className={styles.btnEdit}>Editar</button>
+                                <button className={styles.btnDelete} onClick={() => eliminarMateria(m.id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))}
@@ -108,5 +125,20 @@ export default function GestionAcademica() {
         )}
         </section>
     </div >
-  );
+    ); 
+    {materiaAEditar && (
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <h3>Editar Materia</h3>
+                <input value={materiaAEditar.nombre} onChange={e => setMateriaAEditar({...materiaAEditar, nombre: e.target.value})} />
+                <input type="number" value={materiaAEditar.creditos} onChange={e => setMateriaAEditar({...materiaAEditar, creditos: parseInt(e.target.value)})} />
+                <input type="number" value={materiaAEditar.semestre} onChange={e => setMateriaAEditar({...materiaAEditar, semestre: parseInt(e.target.value)})} />
+                <select value={materiaAEditar.idUniversidad} onChange={e => setMateriaAEditar({...materiaAEditar, idUniversidad: e.target.value})}>
+                    {universidades.map(u => <option key={u.id} value={u.id}>{u.nombre}</option>)}
+                </select>
+                <button onClick={guardarEdicion}>Guardar</button>
+                <button onClick={() => setMateriaAEditar(null)}>Cancelar</button>
+            </div>
+        </div>
+    )}
 }

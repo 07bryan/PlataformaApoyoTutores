@@ -32,6 +32,24 @@ export default function GestionUniversidades() {
     }
   };
 
+  const editarUniversidad = async (universidad) => {
+    const nuevoNombre = prompt("Introduce el nuevo nombre de la universidad:", universidad.nombre);
+    
+    // Validación básica
+    if (!nuevoNombre || nuevoNombre.trim() === "" || nuevoNombre === universidad.nombre) return;
+
+    try {
+      await api.put(`/api/universidades/editar/${universidad.id}`, null, {
+        params: { nuevoNombre }
+      });
+      cargarUniversidades(); // Recargar lista
+      alert("Universidad actualizada con éxito");
+    } catch (error) {
+      console.error("Error al editar", error);
+      alert("Error al actualizar la universidad.");
+    }
+  };
+
   const eliminarUniversidad = async (id) => {
     if (window.confirm("¿Seguro que deseas eliminar esta universidad?")) {
       try {
@@ -61,10 +79,13 @@ export default function GestionUniversidades() {
               <tr key={u.id}>
                 <td>{u.nombre}</td>
                 <td>
+                  <button className={styles.btnEdit} onClick={() => editarUniversidad(u)}>
+                    Editar
+                  </button>
                   <button className={styles.btnDelete} onClick={() => eliminarUniversidad(u.id)}>
                     Eliminar
                   </button>
-                </td>
+              </td>
               </tr>
             ))
           ) : (

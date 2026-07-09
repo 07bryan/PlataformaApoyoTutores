@@ -53,6 +53,36 @@ public class MateriaController {
         }
     }
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarMateria(@PathVariable String id, @RequestBody Map<String, Object> datos) {
+        try {
+            // 1. Buscar la materia existente
+            return materiaRepository.findById(id).map(materia -> {
+
+                // 2. Actualizar campos básicos
+                materia.setNombre((String) datos.get("nombre"));
+                materia.setCreditos((Integer) datos.get("creditos"));
+                materia.setSemestre((Integer) datos.get("semestre"));
+
+                // 3. Actualizar la relación con la universidad si cambió
+                String idUniv = (String) datos.get("idUniversidad");
+                if (idUniv != null) {
+                    Universidad univ = universidadRepository.findById(idUniv)
+                            .orElseThrow(() -> new RuntimeException("Universidad no encontrada"));
+                    materia.setUniversidad(univ);
+                }
+
+                // 4. Guardar cambios
+                materiaRepository.save(materia);
+                return ResponseEntity.ok("Materia actualizada correctamente");
+
+            }).orElse(ResponseEntity.notFound().build());
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error al actualizar la materia: " + e.getMessage());
+        }
+    }
+
     // Eliminar materia
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarMateria(@PathVariable String id) {
