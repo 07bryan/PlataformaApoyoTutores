@@ -92,53 +92,53 @@ export default function GestionAcademica() {
                 <h3>Materias Registradas</h3>
                 {Array.isArray(materias) && materias.length > 0 ? (
                     < table className={styles.userTable}>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Semestre</th>
-                        <th>Créditos</th>
-                        <th>Universidad</th> {/* Nueva columna */}
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {materias.map(m => (
-                        <tr key={m.id}>
-                            <td>{m.nombre}</td>
-                            <td>{m.semestre}</td>
-                            <td>{m.creditos}</td>
-                            {/* Acceso a la propiedad de la universidad vinculada */}
-                            <td>{m.universidad ? m.universidad.nombre : 'Sin asignar'}</td>
-                            <td>
-                                <button onClick={() => iniciarEdicion(m)} className={styles.btnEdit}>Editar</button>
-                                <button className={styles.btnDelete} onClick={() => eliminarMateria(m.id)}>Eliminar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            ) : (
-            <div className={styles.emptyState}>
-                <p>No se encontraron materias registradas.</p>
-                <button className={styles.btnAdd} onClick={() => inputRef.current?.focus()}>¡Agrega tu primera materia arriba!</button>
-            </div>
-        )}
-        </section>
-    </div >
-    ); 
-    {materiaAEditar && (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h3>Editar Materia</h3>
-                <input value={materiaAEditar.nombre} onChange={e => setMateriaAEditar({...materiaAEditar, nombre: e.target.value})} />
-                <input type="number" value={materiaAEditar.creditos} onChange={e => setMateriaAEditar({...materiaAEditar, creditos: parseInt(e.target.value)})} />
-                <input type="number" value={materiaAEditar.semestre} onChange={e => setMateriaAEditar({...materiaAEditar, semestre: parseInt(e.target.value)})} />
-                <select value={materiaAEditar.idUniversidad} onChange={e => setMateriaAEditar({...materiaAEditar, idUniversidad: e.target.value})}>
-                    {universidades.map(u => <option key={u.id} value={u.id}>{u.nombre}</option>)}
-                </select>
-                <button onClick={guardarEdicion}>Guardar</button>
-                <button onClick={() => setMateriaAEditar(null)}>Cancelar</button>
-            </div>
-        </div>
-    )}
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Semestre</th>
+                                <th>Créditos</th>
+                                <th>Universidad</th> {/* Nueva columna */}
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {materias.map(m => (
+                                <tr key={m.id}>
+                                    <td>{m.nombre}</td>
+                                    <td>{m.semestre}</td>
+                                    <td>{m.creditos}</td>
+                                    {/* Acceso a la propiedad de la universidad vinculada */}
+                                    <td>{m.universidad ? m.universidad.nombre : 'Sin asignar'}</td>
+                                    <td>
+                                        <button onClick={() => iniciarEdicion(m)} className={styles.btnEdit}>Editar</button>
+                                        <button className={styles.btnDelete} onClick={() => eliminarMateria(m.id)}>Eliminar</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <div className={styles.emptyState}>
+                        <p>No se encontraron materias registradas.</p>
+                        <button className={styles.btnAdd} onClick={() => inputRef.current?.focus()}>¡Agrega tu primera materia arriba!</button>
+                    </div>
+                )}
+            </section>
+            {materiaAEditar && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Editar Materia</h3>
+                        <input value={materiaAEditar.nombre} onChange={e => setMateriaAEditar({ ...materiaAEditar, nombre: e.target.value })} />
+                        <input type="number" value={materiaAEditar.creditos} onChange={e => setMateriaAEditar({ ...materiaAEditar, creditos: parseInt(e.target.value) })} />
+                        <input type="number" value={materiaAEditar.semestre} onChange={e => setMateriaAEditar({ ...materiaAEditar, semestre: parseInt(e.target.value) })} />
+                        <select value={materiaAEditar.idUniversidad} onChange={e => setMateriaAEditar({ ...materiaAEditar, idUniversidad: e.target.value })}>
+                            {universidades.map(u => <option key={u.id} value={u.id}>{u.nombre}</option>)}
+                        </select>
+                        <button onClick={guardarEdicion}>Guardar</button>
+                        <button onClick={() => setMateriaAEditar(null)}>Cancelar</button>
+                    </div>
+                </div>
+            )}
+        </div >
+    );
 }
