@@ -24,6 +24,20 @@
   text-align: left;
 }
 
+.btnEdit {
+    background-color: #f39c12; /* Naranja profesional */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btnEdit:hover {
+    background-color: #e67e22;
+}
+
 .btnDelete {
   background-color: #dc3545;
   color: white;
