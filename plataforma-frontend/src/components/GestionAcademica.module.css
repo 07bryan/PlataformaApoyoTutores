@@ -144,3 +144,31 @@ h2 {
     background-color: #27ae60;
     color: white;
 }
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px;               /* Espacio entre botones */
+    margin-top: 10px;
+}
+
+.btn-guardar {
+    background-color: #27ae60 !important;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #95a5a6 !important;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-guardar:hover { background-color: #219150 !important; }
+.btn-cancelar:hover { background-color: #7f8c8d !important; }
