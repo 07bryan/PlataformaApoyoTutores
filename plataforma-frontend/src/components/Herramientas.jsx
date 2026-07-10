@@ -71,21 +71,26 @@ export default function Herramientas() {
         </div>
       )}
 
-      {/* MODAL DE VISUALIZACIÓN */}
+      {/* MODAL DE DESCARGA */}
       {pdfUrl && (
         <div className="modal-overlay">
           <div className="modal-content-pdf">
             <div className="modal-header">
-              <h3>Previsualización</h3>
+              <h3>Archivo Listo</h3>
               <button onClick={() => setPdfUrl(null)}>Cerrar</button>
             </div>
-            <iframe 
-              src={pdfUrl} 
-              title="PDF Preview"
-              width="100%" 
-              height="600px" 
-              style={{ border: 'none' }}
-            />
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+              <p>Debido a restricciones de seguridad del servidor, no es posible previsualizar este archivo directamente.</p>
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-download"
+                style={{ display: 'inline-block', padding: '10px 20px', background: '#27ae60', color: 'white', textDecoration: 'none', borderRadius: '5px' }}
+              >
+                Descargar PDF ahora
+              </a>
+            </div>
           </div>
         </div>
       )}
