@@ -139,7 +139,7 @@ export default function GestionRecursos() {
                             <td>{r.nombreRecurso}</td>
                             <td>
                                 <a
-                                    href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`}
+                                    href={`https://docs.google.com/viewer?url=${encodeURIComponent(r.urlArchivoPdf)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
