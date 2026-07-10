@@ -5,6 +5,7 @@ import './Herramientas.css';
 export default function Herramientas() {
   const [recursos, setRecursos] = useState([]);
   const [universidadSeleccionada, setUniversidadSeleccionada] = useState(null);
+  const [pdfUrl, setPdfUrl] = useState(null); // Estado para la modal
 
   useEffect(() => {
     cargarRecursos();
@@ -29,7 +30,6 @@ export default function Herramientas() {
         {universidades.map(univ => (
           <div key={univ} className="widget">
             <h3>{univ}</h3>
-            <p>Material disponible</p>
             <button className="btn-secondary" onClick={() => setUniversidadSeleccionada(univ)}>
               Ver Recursos
             </button>
@@ -38,10 +38,10 @@ export default function Herramientas() {
       </div>
 
       {universidadSeleccionada && (
-        <div className="seccion-recursos" style={{ marginTop: '30px' }}>
+        <div className="seccion-recursos">
           <div className="header-tabla">
             <h3>Recursos de {universidadSeleccionada}</h3>
-            <button className="btn-cerrar" onClick={() => setUniversidadSeleccionada(null)}>Cerrar Tabla</button>
+            <button className="btn-cerrar" onClick={() => setUniversidadSeleccionada(null)}>Cerrar</button>
           </div>
 
           <table className="user-table">
@@ -60,14 +60,33 @@ export default function Herramientas() {
                     <td>{r.materia?.nombre || 'N/A'}</td>
                     <td>{r.nombreRecurso}</td>
                     <td>
-                      <a href={`https://docs.google.com/viewer?url=${encodeURIComponent(r.urlArchivoPdf)}`} target="_blank" rel="noopener noreferrer">
-                        Descargar
-                      </a>
+                      <button className="btn-view" onClick={() => setPdfUrl(r.urlArchivoPdf)}>
+                        Visualizar
+                      </button>
                     </td>
                   </tr>
                 ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* MODAL DE VISUALIZACIÓN */}
+      {pdfUrl && (
+        <div className="modal-overlay">
+          <div className="modal-content-pdf">
+            <div className="modal-header">
+              <h3>Previsualización</h3>
+              <button onClick={() => setPdfUrl(null)}>Cerrar</button>
+            </div>
+            <iframe 
+              src={pdfUrl} 
+              title="PDF Preview"
+              width="100%" 
+              height="600px" 
+              style={{ border: 'none' }}
+            />
+          </div>
         </div>
       )}
     </div>
