@@ -39,43 +39,51 @@ export default function Herramientas() {
       </div>
 
       {universidadSeleccionada && (
-        <div className="seccion-recursos" style={{ marginTop: '30px' }}>
+        <div className="seccion-recursos-container">
           <div className="header-tabla">
             <h3>Recursos de {universidadSeleccionada}</h3>
-            <input
-              placeholder="Filtrar por materia..."
-              value={busquedaMateria}
-              onChange={(e) => setBusquedaMateria(e.target.value)}
-              style={{ padding: '8px', marginLeft: '10px' }}
-            />
-            <button className="btn-cerrar" onClick={() => setUniversidadSeleccionada(null)}>Cerrar Tabla</button>
+            <div className="controles-tabla">
+              <input
+                className="input-filtro"
+                placeholder="🔍 Filtrar por materia..."
+                value={busquedaMateria}
+                onChange={(e) => setBusquedaMateria(e.target.value)}
+              />
+              <button className="btn-cerrar" onClick={() => {
+                setUniversidadSeleccionada(null);
+                setBusquedaMateria('');
+              }}>Cerrar</button>
+            </div>
           </div>
 
-          <table className="user-table">
-            <thead>
-              <tr>
-                <th>Materia</th>
-                <th>Nombre Recurso</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recursos
-                .filter(r => r.materia?.universidad?.nombre === universidadSeleccionada)
-                .filter(r => r.materia?.nombre?.toLowerCase().includes(busquedaMateria.toLowerCase()))
-                .map(r => (
-                  <tr key={r.id}>
-                    <td>{r.materia?.nombre || 'N/A'}</td>
-                    <td>{r.nombreRecurso}</td>
-                    <td>
-                      <a href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`} target="_blank" rel="noopener noreferrer">
-                        Descargar
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <div className="tabla-wrapper">
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>Materia</th>
+                  <th>Nombre Recurso</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recursos
+                  .filter(r => r.materia?.universidad?.nombre === universidadSeleccionada)
+                  .filter(r => r.materia?.nombre?.toLowerCase().includes(busquedaMateria.toLowerCase()))
+                  .map(r => (
+                    <tr key={r.id}>
+                      <td><span className="badge-materia">{r.materia?.nombre || 'N/A'}</span></td>
+                      <td>{r.nombreRecurso}</td>
+                      <td>
+                        <a href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`}
+                          target="_blank" rel="noopener noreferrer" className="btn-descargar">
+                          Descargar
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
