@@ -102,6 +102,7 @@ export default function GestionRecursos() {
             alert("No se pudo eliminar el recurso");
         }
     };
+    console.log("Recursos cargados:", recursos);
 
     return (
         <div className={styles.adminContainer}>
