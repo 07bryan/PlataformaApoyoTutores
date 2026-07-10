@@ -8,6 +8,10 @@ export default function GestionRecursos() {
     const [materias, setMaterias] = useState([]);
     const [modalMateriasAbierta, setModalMateriasAbierta] = useState(false);
 
+    const [universidades, setUniversidades] = useState([]);
+    const [paso, setPaso] = useState('universidad'); // 'universidad' o 'materia'
+    const [materiasFiltradas, setMateriasFiltradas] = useState([]);
+
     // Estados del formulario
     const [nombre, setNombre] = useState('');
     const [archivo, setArchivo] = useState(null);
@@ -24,15 +28,23 @@ export default function GestionRecursos() {
 
     const cargarDatos = async () => {
         try {
-            const [resRec, resMat] = await Promise.all([
+            const [resRec, resUni, resMat] = await Promise.all([
                 api.get('/api/recursos/listar'),
+                api.get('/api/universidades/listar'),
                 api.get('/api/materias/listar')
             ]);
             setRecursos(resRec.data);
+            setUniversidades(resUni.data);
             setMaterias(resMat.data);
         } catch (error) {
             console.error("Error al cargar datos", error);
         }
+    };
+
+    const seleccionarUniversidad = (uni) => {
+        const filtradas = materias.filter(m => m.universidad.id === uni.id);
+        setMateriasFiltradas(filtradas);
+        setPaso('materia');
     };
 
     const seleccionarMateria = (materia) => {
@@ -160,22 +172,36 @@ export default function GestionRecursos() {
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h3>Seleccionar Materia</h3>
-                            <button onClick={() => setModalMateriasAbierta(false)}>×</button>
+                            <h3>{paso === 'universidad' ? 'Seleccionar Universidad' : 'Seleccionar Materia'}</h3>
+                            <button onClick={() => { setModalMateriasAbierta(false); setPaso('universidad'); }}>×</button>
                         </div>
-                        <table className={styles.userTable}>
-                            <thead>
-                                <tr><th>Materia</th><th>Universidad</th></tr>
-                            </thead>
-                            <tbody>
-                                {materias.map(m => (
-                                    <tr key={m.id} onClick={() => seleccionarMateria(m)} style={{ cursor: 'pointer' }}>
-                                        <td>{m.nombre}</td>
-                                        <td>{m.universidad?.nombre || 'N/A'}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+
+                        {paso === 'universidad' ? (
+                            <table className={styles.userTable}>
+                                <thead><tr><th>Universidad</th></tr></thead>
+                                <tbody>
+                                    {universidades.map(u => (
+                                        <tr key={u.id} onClick={() => seleccionarUniversidad(u)} style={{ cursor: 'pointer' }}>
+                                            <td>{u.nombre}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <>
+                                <button onClick={() => setPaso('universidad')}>← Volver a Universidades</button>
+                                <table className={styles.userTable}>
+                                    <thead><tr><th>Materia</th></tr></thead>
+                                    <tbody>
+                                        {materiasFiltradas.map(m => (
+                                            <tr key={m.id} onClick={() => seleccionarMateria(m)} style={{ cursor: 'pointer' }}>
+                                                <td>{m.nombre}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </>
+                        )}
                     </div>
                 </div>
             )}
