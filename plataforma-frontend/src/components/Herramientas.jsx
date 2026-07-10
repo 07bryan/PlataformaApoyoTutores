@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-import api from '../services/api';
-import './Herramientas.css';
-
 export default function Herramientas() {
   const [recursos, setRecursos] = useState([]);
   const [universidadSeleccionada, setUniversidadSeleccionada] = useState(null);
+  // 1. Nuevo estado para el filtro
+  const [busquedaMateria, setBusquedaMateria] = useState('');
 
   useEffect(() => {
     cargarRecursos();
@@ -25,36 +23,34 @@ export default function Herramientas() {
     <div className="view-container">
       <h2>Herramientas Pedagógicas</h2>
 
-      <div className="grid-widgets">
-        {universidades.map(univ => (
-          <div key={univ} className="widget">
-            <h3>{univ}</h3>
-            <p>Material disponible</p>
-            <button className="btn-secondary" onClick={() => setUniversidadSeleccionada(univ)}>
-              Ver Recursos
-            </button>
-          </div>
-        ))}
-      </div>
+      {/* ... widgets de universidades ... */}
 
       {universidadSeleccionada && (
         <div className="seccion-recursos" style={{ marginTop: '30px' }}>
           <div className="header-tabla">
             <h3>Recursos de {universidadSeleccionada}</h3>
-            <button className="btn-cerrar" onClick={() => setUniversidadSeleccionada(null)}>Cerrar Tabla</button>
+            {/* 2. Input de filtro integrado */}
+            <input 
+              placeholder="Filtrar por materia..." 
+              value={busquedaMateria}
+              onChange={(e) => setBusquedaMateria(e.target.value)}
+              style={{ padding: '8px', marginLeft: '10px' }}
+            />
+            <button className="btn-cerrar" onClick={() => {
+                setUniversidadSeleccionada(null);
+                setBusquedaMateria(''); // Limpiar filtro al cerrar
+            }}>Cerrar Tabla</button>
           </div>
 
           <table className="user-table">
             <thead>
-              <tr>
-                <th>Materia</th>
-                <th>Nombre Recurso</th>
-                <th>Acción</th>
-              </tr>
+              <tr><th>Materia</th><th>Nombre Recurso</th><th>Acción</th></tr>
             </thead>
             <tbody>
               {recursos
                 .filter(r => r.materia?.universidad?.nombre === universidadSeleccionada)
+                // 3. Aplicamos el filtro de búsqueda por nombre de materia
+                .filter(r => r.materia?.nombre?.toLowerCase().includes(busquedaMateria.toLowerCase()))
                 .map(r => (
                   <tr key={r.id}>
                     <td>{r.materia?.nombre || 'N/A'}</td>
@@ -65,7 +61,7 @@ export default function Herramientas() {
                       </a>
                     </td>
                   </tr>
-                ))}
+              ))}
             </tbody>
           </table>
         </div>
