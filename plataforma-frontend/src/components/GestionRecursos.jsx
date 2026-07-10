@@ -173,7 +173,7 @@ export default function GestionRecursos() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h3>{paso === 'universidad' ? 'Seleccionar Universidad' : 'Seleccionar Materia'}</h3>
-                            <button onClick={() => { setModalMateriasAbierta(false); setPaso('universidad'); }}>×</button>
+                            <button onClick={() => { setModalMateriasAbierta(false); setPaso('universidad');}} className={styles.btnCerrarModal} >×</button>
                         </div>
 
                         {paso === 'universidad' ? (
@@ -189,7 +189,7 @@ export default function GestionRecursos() {
                             </table>
                         ) : (
                             <>
-                                <button onClick={() => setPaso('universidad')}>← Volver a Universidades</button>
+                                <button onClick={() => setPaso('universidad')} className={styles.btnVolver}>← Volver a Universidades</button>
                                 <table className={styles.userTable}>
                                     <thead><tr><th>Materia</th></tr></thead>
                                     <tbody>

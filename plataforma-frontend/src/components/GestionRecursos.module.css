@@ -92,20 +92,19 @@
 }
 
 /* Botón de la X (Cerrar Modal) */
-.modal-header button {
+.btnCerrarModal {
     background: transparent;
     border: none;
     font-size: 1.8rem;
     font-weight: 300;
     cursor: pointer;
     color: #495057;
-    padding: 0 10px;
-    line-height: 1;
+    padding: 0 5px;
     transition: color 0.2s;
 }
 
-.modal-header button:hover {
-    color: #dc3545; /* Mismo rojo que tu btnEliminar */
+.btnCerrarModal:hover {
+    color: #dc3545; /* Rojo al pasar el ratón */
 }
 
 /* Botón de "Volver a Universidades" */
