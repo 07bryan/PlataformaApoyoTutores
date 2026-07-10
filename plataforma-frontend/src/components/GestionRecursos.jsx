@@ -139,7 +139,7 @@ export default function GestionRecursos() {
                             <td>{r.nombreRecurso}</td>
                             <td>
                                 <a
-                                    href={`https://docs.google.com/viewer?url=${encodeURIComponent(r.urlArchivoPdf)}`}
+                                    href={`${encodeURIComponent(r.urlArchivoPdf)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >

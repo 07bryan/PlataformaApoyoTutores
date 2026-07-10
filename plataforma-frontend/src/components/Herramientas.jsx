@@ -5,7 +5,7 @@ import './Herramientas.css';
 export default function Herramientas() {
   const [recursos, setRecursos] = useState([]);
   const [universidadSeleccionada, setUniversidadSeleccionada] = useState(null);
-  const [pdfUrl, setPdfUrl] = useState(null); // Estado para la modal
+  const [pdfUrl, setPdfUrl] = useState(null); 
 
   useEffect(() => {
     cargarRecursos();
