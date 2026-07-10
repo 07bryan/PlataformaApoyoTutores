@@ -51,6 +51,7 @@ public class RecursoController {
 
         try {
             // Extraer extensión automáticamente
+            String idRecurso = "REC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
             String originalName = archivo.getOriginalFilename();
             String nombreSinExtension = (originalName != null)
                     ? originalName.replaceFirst("[.][^.]+$", "")
@@ -62,7 +63,7 @@ public class RecursoController {
             Map uploadResult = cloudinary.uploader().upload(archivo.getBytes(),
                     ObjectUtils.asMap(
                             "resource_type", "auto",
-                            "public_id", nombreSinExtension + "_" + UUID.randomUUID().toString().substring(0, 5),
+                            "public_id", nombreSinExtension + "_" + idRecurso + "." + extension,
                             "upload_preset", "ml_default",
                             "access_mode", "public"
                     ));
@@ -73,7 +74,7 @@ public class RecursoController {
 
             // Crear entidad Recurso
             Recurso recurso = new Recurso();
-            recurso.setId("REC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
+            recurso.setId(idRecurso);
             recurso.setNombreRecurso(nombre);
             recurso.setUrlArchivoPdf(urlPublica);
 
