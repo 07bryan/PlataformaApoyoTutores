@@ -50,34 +50,38 @@ public class RecursoController {
             @RequestParam("idMateria") String idMateria) {
 
         try {
-            // 1. Subir a Cloudinary
+            // Extraer extensión automáticamente
+            String originalName = archivo.getOriginalFilename();
+            String nombreSinExtension = (originalName != null)
+                    ? originalName.replaceFirst("[.][^.]+$", "")
+                    : "recurso_" + System.currentTimeMillis();
+            String extension = (originalName != null && originalName.contains("."))
+                    ? originalName.substring(originalName.lastIndexOf(".") + 1).toUpperCase()
+                    : "FILE";
+            //Subir a Cloudinary
             Map uploadResult = cloudinary.uploader().upload(archivo.getBytes(),
                     ObjectUtils.asMap(
                             "resource_type", "auto",
+                            "public_id", nombreSinExtension + "_" + UUID.randomUUID().toString().substring(0, 5),
                             "upload_preset", "ml_default",
                             "access_mode", "public"
                     ));
 
             String urlPublica = (String) uploadResult.get("secure_url");
 
-            // 2. Extraer extensión automáticamente (LA LÓGICA QUE FALTABA)
-            String originalName = archivo.getOriginalFilename();
-            String extension = (originalName != null && originalName.contains("."))
-                    ? originalName.substring(originalName.lastIndexOf(".") + 1).toUpperCase()
-                    : "FILE";
 
-            // 3. Crear entidad Recurso
+
+            // Crear entidad Recurso
             Recurso recurso = new Recurso();
             recurso.setId("REC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
             recurso.setNombreRecurso(nombre);
             recurso.setUrlArchivoPdf(urlPublica);
 
-            // ASIGNAR CAMPOS OBLIGATORIOS (Aquí estaba el error)
             recurso.setTipoRecurso(extension);
             recurso.setTematicas("General");
             recurso.setPeriodo("2026-1");
 
-            // 4. Vincular Materia
+            // Vincular Materia
             Materia materia = materiaRepository.findById(idMateria)
                     .orElseThrow(() -> new RuntimeException("Materia no encontrada"));
             recurso.setMateria(materia);
