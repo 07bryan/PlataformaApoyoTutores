@@ -40,7 +40,7 @@ public class RecursoController {
 
     @GetMapping("/listar")
     public List<Recurso> listarTodos() {
-        return recursoRepository.findAll(Sort.by(Sort.Direction.ASC, "materia.nombreMateria"));
+        return recursoRepository.findAll(Sort.by(Sort.Direction.ASC, "materia.nombre"));
     }
 
     @PostMapping("/subir")
