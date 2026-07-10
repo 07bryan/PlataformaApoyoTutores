@@ -51,7 +51,10 @@ public class RecursoController {
         try {
             // 1. Subir a Cloudinary
             Map uploadResult = cloudinary.uploader().upload(archivo.getBytes(),
-                    ObjectUtils.asMap("resource_type", "auto"));
+                    ObjectUtils.asMap(
+                            "resource_type", "auto",
+                            "access_mode", "public" 
+                    ));
 
             String urlPublica = (String) uploadResult.get("secure_url");
 
