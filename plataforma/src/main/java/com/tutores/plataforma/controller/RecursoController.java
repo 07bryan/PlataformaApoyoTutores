@@ -47,7 +47,8 @@ public class RecursoController {
     public ResponseEntity<?> subirRecurso(
             @RequestParam("archivo") MultipartFile archivo,
             @RequestParam("nombre") String nombre,
-            @RequestParam("idMateria") String idMateria) {
+            @RequestParam("idMateria") String idMateria,
+            @RequestParam("categoria") String categoria) {
 
         try {
             // Extraer extensión automáticamente
@@ -81,6 +82,7 @@ public class RecursoController {
             recurso.setTipoRecurso(extension);
             recurso.setTematicas("General");
             recurso.setPeriodo("2026-1");
+            recurso.setCategoria(categoria);
 
             // Vincular Materia
             Materia materia = materiaRepository.findById(idMateria)

@@ -18,6 +18,7 @@ export default function GestionRecursos() {
     const [idMateria, setIdMateria] = useState('');
     const [materiaSeleccionada, setMateriaSeleccionada] = useState(null);
     const [cargando, setCargando] = useState(false);
+    const [categoria, setCategoria] = useState('ACADEMICO'); // Valor por defecto
 
     // Referencia para limpiar el input de archivo
     const fileInputRef = useRef(null);
@@ -54,6 +55,7 @@ export default function GestionRecursos() {
     };
 
     const subirArchivo = async () => {
+        const esAcademico = categoria === 'ACADEMICO';
         if (!archivo || !nombre || !idMateria) {
             alert("Por favor completa todos los campos y selecciona un archivo.");
             return;
@@ -64,6 +66,11 @@ export default function GestionRecursos() {
         formData.append('archivo', archivo);
         formData.append('nombre', nombre);
         formData.append('idMateria', idMateria);
+        formData.append('categoria', categoria);
+
+        if (esAcademico) {
+            formData.append('idMateria', idMateria);
+        }
 
         try {
             await api.post('/api/recursos/subir', formData, {
@@ -127,11 +134,26 @@ export default function GestionRecursos() {
                     onChange={e => setNombre(e.target.value)}
                 />
 
+                <select
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
+                    className={styles.selectCategoría} // Define este estilo en tu CSS
+                >
+                    <option value="ACADEMICO">Académico</option>
+                    <option value="AUTOCUIDADO">Autocuidado</option>
+                </select>
+
                 <input
                     type="file"
                     ref={fileInputRef}
                     onChange={e => setArchivo(e.target.files[0])}
                 />
+                {/* Solo mostramos la selección de materia si es Académico */}
+                {categoria === 'ACADEMICO' && (
+                    <button type="button" onClick={() => setModalMateriasAbierta(true)}>
+                        {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
+                    </button>
+                )}
                 <button type="button" onClick={() => setModalMateriasAbierta(true)}>
                     {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
                 </button>
@@ -143,12 +165,13 @@ export default function GestionRecursos() {
 
             <table className={styles.userTable}>
                 <thead>
-                    <tr><th>Nombre</th><th>Archivo</th><th>Materia</th><th>Universidad</th><th>Acciones</th></tr>
+                    <tr><th>Nombre</th><th>Categoría</th><th>Archivo</th><th>Materia</th><th>Universidad</th><th>Acciones</th></tr>
                 </thead>
                 <tbody>
                     {recursos.map(r => (
                         <tr key={r.id}>
                             <td>{r.nombreRecurso}</td>
+                            <td><span className={r.categoria === 'ACADEMICO' ? styles.badgeBlue : styles.badgeGreen}>{r.categoria}</span></td>
                             <td>
                                 <a
                                     href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`}
@@ -173,7 +196,7 @@ export default function GestionRecursos() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h3>{paso === 'universidad' ? 'Seleccionar Universidad' : 'Seleccionar Materia'}</h3>
-                            <button onClick={() => { setModalMateriasAbierta(false); setPaso('universidad');}} className={styles.btnCerrarModal} >×</button>
+                            <button onClick={() => { setModalMateriasAbierta(false); setPaso('universidad'); }} className={styles.btnCerrarModal} >×</button>
                         </div>
 
                         {paso === 'universidad' ? (

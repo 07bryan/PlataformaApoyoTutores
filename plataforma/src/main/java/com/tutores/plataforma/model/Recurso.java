@@ -30,6 +30,9 @@ public class Recurso {
     @Column(name = "url_solucionario", length = 500)
     private String urlSolucionario;
 
+    @Column(name = "categoria", length = 100)
+    private String categoria;
+
     // Getters y Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -54,4 +57,7 @@ public class Recurso {
 
     public String getUrlSolucionario() { return urlSolucionario; }
     public void setUrlSolucionario(String urlSolucionario) { this.urlSolucionario = urlSolucionario; }
+
+    public String getCategoria() { return categoria; }
+    public void setCategoria(String categoria) { this.categoria = categoria; }
 }

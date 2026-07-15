@@ -14,6 +14,7 @@ export default function Herramientas() {
   const cargarRecursos = async () => {
     try {
       const res = await api.get('/api/recursos/listar');
+      const academicos = res.data.filter(r => r.categoria === 'ACADEMICO');
       setRecursos(res.data);
     } catch (error) {
       console.error("Error al cargar recursos", error);
