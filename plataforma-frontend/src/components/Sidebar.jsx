@@ -29,6 +29,12 @@ export default function Sidebar({ rol }) {
           </>
         )}
       </nav>
+      {/* --- BOTÓN DE CIERRE DE SESIÓN --- */}
+      <div className="sidebar-footer">
+        <button onClick={cerrarSesion} className="btn-logout">
+          Cerrar Sesión
+        </button>
+      </div>
     </aside>
   );
 }

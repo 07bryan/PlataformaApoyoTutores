@@ -170,3 +170,35 @@ code {
   color: #000000; /* O pon un color fijo como #000000 */
   font-weight: 600;
 }
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* ... tus otros estilos ... */
+}
+
+.sidebar-nav {
+  flex-grow: 1; /* Esto empuja el footer hacia abajo */
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 10px;
+  background-color: #dc3545; /* Rojo tipo peligro/salida */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}

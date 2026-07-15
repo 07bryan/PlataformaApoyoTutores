@@ -23,6 +23,11 @@ function Login({ onLoginSuccess }) { // Desestructuramos el prop
       setMensajeError(error.response?.data?.message || 'Credenciales incorrectas');
     }
   };
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('usuarioSesion');
+    window.location.href = '/login';
+  };
   return (
     <div className="login-container">
       <h1 className="titulo-sistema">Herramientas para tutores</h1>
