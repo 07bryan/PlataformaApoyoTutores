@@ -3,6 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 export default function Sidebar({ rol }) {
   const location = useLocation();
 
+  const cerrarSesion = () => {
+    localStorage.removeItem('usuarioSesion');
+    window.location.href = '/login'; 
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
