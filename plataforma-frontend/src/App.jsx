@@ -59,6 +59,7 @@ function App() {
             <Route path="/inicio" element={<Dashboard />} />
             <Route path="/herramientas" element={<Herramientas />} />
             <Route path="/autocuidado" element={<Autocuidado />} />
+            <Route path="/planeacion" element={<Planeacion />} />
             
             {/* Rutas Protegidas */}
             <Route 
