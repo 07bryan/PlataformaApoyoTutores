@@ -56,7 +56,7 @@ export default function GestionRecursos() {
 
     const subirArchivo = async () => {
         const esAcademico = categoria === 'ACADEMICO';
-        if (!archivo || !nombre || !idMateria) {
+        if (!archivo || !nombre || (esAcademico && !idMateria)) {
             alert("Por favor completa todos los campos y selecciona un archivo.");
             return;
         }
