@@ -135,18 +135,25 @@ export default function GestionRecursos() {
                 <select
                     value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
-                    className={styles.selectCategoria} 
+                    className={styles.selectCategoria}
                 >
                     <option value="MATERIAL_PARA_TUTORIAS">Material para tutorías</option>
                     <option value="AUTOCUIDADO">Autocuidado</option>
                     <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
                 </select>
 
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={e => setArchivo(e.target.files[0])}
-                />
+                <div className={styles.fileWrapper}>
+                    <label htmlFor="file-upload" className={styles.customFileUpload}>
+                        {archivo ? archivo.name : "Seleccionar archivo..."}
+                    </label>
+                    <input
+                        id="file-upload"
+                        type="file"
+                        ref={fileInputRef}
+                        onChange={e => setArchivo(e.target.files[0])}
+                        className={styles.hiddenInput}
+                    />
+                </div>
                 {/* Solo mostramos la selección de materia si es Académico */}
                 {categoria === 'MATERIAL_PARA_TUTORIAS' && (
                     <button type="button" onClick={() => setModalMateriasAbierta(true)}>
