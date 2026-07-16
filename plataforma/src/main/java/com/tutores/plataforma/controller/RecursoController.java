@@ -85,7 +85,7 @@ public class RecursoController {
             recurso.setCategoria(categoria);
 
             // Vincular Materia
-            if ("ACADEMICO".equals(categoria)) {
+            if ("MATERIAL_PARA_TUTORIAS".equals(categoria)) {
                 if (idMateria == null || idMateria.isEmpty()) {
                     return ResponseEntity.badRequest().body("La materia es obligatoria para recursos académicos");
                 }

@@ -18,7 +18,7 @@ export default function GestionRecursos() {
     const [idMateria, setIdMateria] = useState('');
     const [materiaSeleccionada, setMateriaSeleccionada] = useState(null);
     const [cargando, setCargando] = useState(false);
-    const [categoria, setCategoria] = useState('ACADEMICO'); // Valor por defecto
+    const [categoria, setCategoria] = useState('MATERIAL_PARA_TUTORIAS'); // Valor por defecto
 
     // Referencia para limpiar el input de archivo
     const fileInputRef = useRef(null);
@@ -55,7 +55,7 @@ export default function GestionRecursos() {
     };
 
     const subirArchivo = async () => {
-        const esAcademico = categoria === 'ACADEMICO';
+        const esAcademico = categoria === 'MATERIAL_PARA_TUTORIAS';
         if (!archivo || !nombre || (esAcademico && !idMateria)) {
             alert("Por favor completa todos los campos y selecciona un archivo.");
             return;
@@ -137,7 +137,7 @@ export default function GestionRecursos() {
                     onChange={(e) => setCategoria(e.target.value)}
                     className={styles.selectCategoria} 
                 >
-                    <option value="ACADEMICO">Material para tutorías</option>
+                    <option value="MATERIAL_PARA_TUTORIAS">Material para tutorías</option>
                     <option value="AUTOCUIDADO">Autocuidado</option>
                     <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
                 </select>
@@ -148,7 +148,7 @@ export default function GestionRecursos() {
                     onChange={e => setArchivo(e.target.files[0])}
                 />
                 {/* Solo mostramos la selección de materia si es Académico */}
-                {categoria === 'ACADEMICO' && (
+                {categoria === 'MATERIAL_PARA_TUTORIAS' && (
                     <button type="button" onClick={() => setModalMateriasAbierta(true)}>
                         {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
                     </button>
@@ -167,7 +167,7 @@ export default function GestionRecursos() {
                     {recursos.map(r => (
                         <tr key={r.id}>
                             <td>{r.nombreRecurso}</td>
-                            <td><span className={r.categoria === 'ACADEMICO' ? styles.badgeBlue : styles.badgeGreen}>{r.categoria}</span></td>
+                            <td><span className={r.categoria === 'MATERIAL_PARA_TUTORIAS' ? styles.badgeBlue : styles.badgeGreen}>{r.categoria}</span></td>
                             <td>
                                 <a
                                     href={r.urlArchivoPdf.startsWith("http") ? r.urlArchivoPdf : `${import.meta.env.VITE_APP_API_URL}${r.urlArchivoPdf}`}
