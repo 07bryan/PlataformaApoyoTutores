@@ -137,7 +137,7 @@ export default function GestionRecursos() {
                     onChange={(e) => setCategoria(e.target.value)}
                     className={styles.selectCategoria} 
                 >
-                    <option value="ACADEMICO">Académico</option>
+                    <option value="ACADEMICO">Material para tutorías</option>
                     <option value="AUTOCUIDADO">Autocuidado</option>
                     <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
                 </select>
