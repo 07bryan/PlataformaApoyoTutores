@@ -154,9 +154,6 @@ export default function GestionRecursos() {
                         {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
                     </button>
                 )}
-                <button type="button" onClick={() => setModalMateriasAbierta(true)}>
-                    {materiaSeleccionada ? materiaSeleccionada.nombre : "Seleccione Materia..."}
-                </button>
 
                 <button onClick={subirArchivo} disabled={cargando}>
                     {cargando ? "Subiendo..." : "Subir Recurso"}
