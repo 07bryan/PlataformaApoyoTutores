@@ -65,9 +65,7 @@ export default function GestionRecursos() {
         const formData = new FormData();
         formData.append('archivo', archivo);
         formData.append('nombre', nombre);
-        formData.append('idMateria', idMateria);
         formData.append('categoria', categoria);
-
         if (esAcademico) {
             formData.append('idMateria', idMateria);
         }
