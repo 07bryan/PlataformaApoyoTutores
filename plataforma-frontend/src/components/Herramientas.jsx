@@ -25,7 +25,7 @@ export default function Herramientas() {
 
   return (
     <div className="view-container">
-      <h2>Herramientas Pedagógicas</h2>
+      <h2>Material para tutorias</h2>
 
       <div className="grid-widgets">
         {universidades.map(univ => (

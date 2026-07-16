@@ -4,10 +4,9 @@ import styles from './Dashboard.module.css';
 export default function Dashboard() {
   const navigate = useNavigate();
 
-  // Definimos los widgets para mantener el código limpio
   const widgets = [
     {
-      titulo: "Herramientas Pedagógicas",
+      titulo: "Material para tutorias",
       contenido: "Accede a todos los recursos y talleres.",
       ruta: "/herramientas",
       color: "#007bff"

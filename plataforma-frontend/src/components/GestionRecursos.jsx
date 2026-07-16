@@ -84,17 +84,8 @@ export default function GestionRecursos() {
             cargarDatos();
             alert("Recurso subido exitosamente");
         } catch (error) {
-            console.error("Error completo:", error);
-            if (error.response) {
-                // El servidor respondió con un error (ej: 400, 413, 500)
-                console.error("Data:", error.response.data);
-                console.error("Status:", error.response.status);
-                alert(`Error del servidor (${error.response.status}): ${JSON.stringify(error.response.data)}`);
-            } else {
-                alert("Error de red o conexión al servidor.");
-            }
-            //console.error(error);
-            //alert("Error al subir el archivo. Verifica el tamaño o formato.");
+            console.error(error);
+            alert("Error al subir el archivo. Verifica el tamaño o formato.");
         } finally {
             setCargando(false);
         }
@@ -144,10 +135,11 @@ export default function GestionRecursos() {
                 <select
                     value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
-                    className={styles.selectCategoría} // Define este estilo en tu CSS
+                    className={styles.selectCategoria} 
                 >
                     <option value="ACADEMICO">Académico</option>
                     <option value="AUTOCUIDADO">Autocuidado</option>
+                    <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
                 </select>
 
                 <input

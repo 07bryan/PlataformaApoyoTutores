@@ -15,8 +15,11 @@ export default function Sidebar({ rol }) {
       </div>
       <nav className="sidebar-nav">
         <Link to="/inicio" className={location.pathname === '/inicio' ? 'active' : ''}>Inicio</Link>
-        <Link to="/herramientas" className={location.pathname === '/herramientas' ? 'active' : ''}>Herramientas</Link>
+        <Link to="/herramientas" className={location.pathname === '/herramientas' ? 'active' : ''}>Material para tutorias</Link>
         <Link to="/autocuidado" className={location.pathname === '/autocuidado' ? 'active' : ''}>Autocuidado</Link>
+        <Link to="/planeacion" className={location.pathname === '/planeacion' ? 'active' : ''}>Herramientas Pedagógicas</Link>
+
+
 
         {/* --- SECCIÓN ADMINISTRADOR --- */}
         {(rol === 'ADMIN' || rol === 'SUPER_ADMIN') && (
