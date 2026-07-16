@@ -187,3 +187,18 @@
     display: flex;
     align-items: center;
 }
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1; /* Para que el select ocupe el espacio disponible */
+    min-width: 200px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    margin-left: 2px;
+}

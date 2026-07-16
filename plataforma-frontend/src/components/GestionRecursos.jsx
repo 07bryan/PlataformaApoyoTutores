@@ -132,15 +132,18 @@ export default function GestionRecursos() {
                     onChange={e => setNombre(e.target.value)}
                 />
 
-                <select
-                    value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
-                    className={styles.selectCategoria}
-                >
-                    <option value="MATERIAL_PARA_TUTORIAS">Material para tutorías</option>
-                    <option value="AUTOCUIDADO">Autocuidado</option>
-                    <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
-                </select>
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>Categoría</label>
+                    <select
+                        value={categoria}
+                        onChange={(e) => setCategoria(e.target.value)}
+                        className={styles.selectCategoria}
+                    >
+                        <option value="MATERIAL_PARA_TUTORIAS">Material para tutorías</option>
+                        <option value="AUTOCUIDADO">Autocuidado</option>
+                        <option value="HERRAMIENTAS_PEDAGOGICAS">Herramientas Pedagógicas</option>
+                    </select>
+                </div>
 
                 <div className={styles.fileWrapper}>
                     <label htmlFor="file-upload" className={styles.customFileUpload}>
