@@ -74,10 +74,10 @@
   display: grid;
 
   grid-template-columns:
-    minmax(240px, 2fr)
-    minmax(120px, 0.8fr)
-    minmax(120px, 0.8fr)
-    minmax(220px, 1.5fr)
+    minmax(260px, 2fr)
+    minmax(130px, 0.8fr)
+    minmax(130px, 0.8fr)
+    minmax(200px, 1fr)
     auto;
 
   align-items: end;
