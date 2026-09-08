@@ -646,3 +646,18 @@
     padding: 0 8px;
   }
 }
+
+/* =========================================================
+   TÍTULO DE LA PÁGINA
+   ========================================================= */
+
+.adminContainer h1 {
+  color: #2563eb;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+
+  margin-bottom: 20px;
+}
