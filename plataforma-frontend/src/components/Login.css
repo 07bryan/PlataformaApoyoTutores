@@ -6,7 +6,6 @@
   box-sizing: border-box;
 }
 
-
 /* =========================================================
    CONTENEDOR PRINCIPAL
    ========================================================= */
@@ -28,68 +27,130 @@
   overflow: auto;
 }
 
-
 /* =========================================================
    PANEL DE IDENTIDAD
    ========================================================= */
 
-.login-container::before {
-  content: "";
-
+.login-brand {
   grid-column: 1;
-
   grid-row: 1;
 
-  display: block;
+  align-self: center;
 
   width: 100%;
-  height: 100%;
 
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(37, 99, 235, 0.08),
-      transparent 35%
-    ),
-    linear-gradient(
-      145deg,
-      #ffffff 0%,
-      #f8fafc 100%
-    );
+  padding: 40px 10%;
 
-  border-right: 1px solid #e2e8f0;
+  color: #0f172a;
 }
 
-
 /* =========================================================
-   TÍTULO DEL SISTEMA
+   NOMBRE DE LA PLATAFORMA
    ========================================================= */
 
-.titulo-sistema {
-  position: absolute;
+.brand-name {
+  display: inline-block;
 
-  left: 8%;
+  margin-bottom: 18px;
 
-  top: 50%;
+  color: #2563eb;
 
-  width: 27%;
+  font-size: 18px;
+  font-weight: 700;
 
-  margin: 0;
+  letter-spacing: -0.2px;
+}
 
-  transform: translateY(-50%);
+/* =========================================================
+   TÍTULO PRINCIPAL
+   ========================================================= */
+
+.login-brand h1 {
+  max-width: 480px;
+
+  margin: 0 0 20px;
 
   color: #0f172a;
 
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 700;
 
-  line-height: 1.15;
+  line-height: 1.1;
 
-  letter-spacing: -1px;
-
-  z-index: 2;
+  letter-spacing: -1.2px;
 }
 
+/* =========================================================
+   DESCRIPCIÓN
+   ========================================================= */
+
+.login-brand > p {
+  max-width: 440px;
+
+  margin: 0 0 28px;
+
+  color: #64748b;
+
+  font-size: 16px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   CARACTERÍSTICAS
+   ========================================================= */
+
+.brand-features {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-bottom: 36px;
+}
+
+.brand-features span {
+  color: #334155;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   FUNDACIÓN
+   ========================================================= */
+
+.brand-foundation {
+  display: inline-block;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #e2e8f0;
+
+  color: #94a3b8;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   PANEL DERECHO / LOGIN
+   ========================================================= */
+
+.login-container::after {
+  content: "";
+
+  grid-column: 1 / -1;
+  grid-row: 1;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
 
 /* =========================================================
    TARJETA DE LOGIN
@@ -97,7 +158,6 @@
 
 .login-card {
   grid-column: 2;
-
   grid-row: 1;
 
   align-self: center;
@@ -116,14 +176,12 @@
 
   border-radius: 18px;
 
-  box-shadow:
-    0 10px 30px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
 
   text-align: center;
 
   z-index: 2;
 }
-
 
 /* =========================================================
    LOGO
@@ -142,7 +200,6 @@
   border-radius: 0;
 }
 
-
 /* =========================================================
    TÍTULO LOGIN
    ========================================================= */
@@ -160,7 +217,6 @@
   letter-spacing: -0.5px;
 }
 
-
 /* =========================================================
    SUBTÍTULO
    ========================================================= */
@@ -174,7 +230,6 @@
 
   line-height: 1.5;
 }
-
 
 /* =========================================================
    MENSAJE DE ERROR
@@ -198,7 +253,6 @@
 
   line-height: 1.4;
 }
-
 
 /* =========================================================
    CAMPOS
@@ -232,13 +286,11 @@
     box-shadow 0.15s ease;
 }
 
-
 /* Placeholder */
 
 .login-card input::placeholder {
   color: #94a3b8;
 }
-
 
 /* Hover */
 
@@ -246,16 +298,13 @@
   border-color: #cbd5e1;
 }
 
-
 /* Focus */
 
 .login-card input:focus {
   border-color: #2563eb;
 
-  box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
-
 
 /* =========================================================
    BOTÓN INICIAR SESIÓN
@@ -292,7 +341,6 @@
     transform 0.1s ease;
 }
 
-
 /* Hover */
 
 .login-btn:hover {
@@ -300,10 +348,8 @@
 
   border-color: #1d4ed8;
 
-  box-shadow:
-    0 4px 10px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
 }
-
 
 /* Active */
 
@@ -311,51 +357,11 @@
   transform: translateY(1px);
 }
 
-
 /* =========================================================
-   RESPONSIVE - TABLET
+   TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
-  .login-container {
-    grid-template-columns: 1fr;
-  }
-
-  .login-container::before {
-    display: none;
-  }
-
-  .titulo-sistema {
-    position: static;
-
-    width: auto;
-
-    margin: 0;
-
-    padding: 32px 24px 0;
-
-    transform: none;
-
-    text-align: center;
-
-    font-size: 30px;
-  }
-
-  .login-card {
-    grid-column: 1;
-
-    grid-row: 1;
-
-    margin: 100px auto 40px;
-  }
-}
-
-
-/* =========================================================
-   RESPONSIVE - MÓVIL
-   ========================================================= */
-
-@media (max-width: 600px) {
   .login-container {
     display: flex;
 
@@ -365,25 +371,107 @@
 
     justify-content: center;
 
-    padding: 20px 0;
+    min-height: 100vh;
+
+    padding: 32px 20px;
+
+    gap: 28px;
+
+    overflow-y: auto;
   }
 
-  .titulo-sistema {
+  .login-brand {
     width: 100%;
+    max-width: 520px;
 
-    padding: 0 20px;
+    padding: 0;
 
-    margin-bottom: 24px;
+    text-align: center;
+  }
 
-    font-size: 26px;
+  .brand-name {
+    margin-bottom: 10px;
+  }
+
+  .login-brand h1 {
+    max-width: none;
+
+    margin-bottom: 12px;
+
+    font-size: 34px;
+  }
+
+  .login-brand > p {
+    max-width: 500px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-bottom: 20px;
+  }
+
+  .brand-features {
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+
+  .brand-foundation {
+    padding-top: 12px;
   }
 
   .login-card {
-    width: calc(100% - 32px);
+    width: min(440px, 100%);
 
+    padding: 32px;
+  }
+}
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 24px 16px;
+
+    gap: 22px;
+  }
+
+  .login-brand {
     max-width: 440px;
+  }
 
-    margin: 0;
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .login-brand h1 {
+    font-size: 28px;
+
+    letter-spacing: -0.7px;
+  }
+
+  .login-brand > p {
+    font-size: 14px;
+
+    line-height: 1.55;
+  }
+
+  .brand-features {
+    gap: 8px;
+  }
+
+  .brand-features span {
+    font-size: 13px;
+  }
+
+  .brand-foundation {
+    font-size: 11px;
+  }
+
+  .login-card {
+    width: 100%;
 
     padding: 28px 22px;
 
@@ -406,12 +494,19 @@
   }
 }
 
-
 /* =========================================================
    PANTALLAS MUY PEQUEÑAS
    ========================================================= */
 
 @media (max-width: 380px) {
+  .login-container {
+    padding: 20px 12px;
+  }
+
+  .login-brand h1 {
+    font-size: 25px;
+  }
+
   .login-card {
     padding: 22px 18px;
   }
@@ -419,9 +514,5 @@
   .login-logo {
     width: 145px;
     height: 145px;
-  }
-
-  .titulo-sistema {
-    font-size: 23px;
   }
 }
