@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from "../services/api";
 import "./Login.css";
 import logo from "../assets/Logo.jpeg";
 
 function Login({ onLoginSuccess }) {
-  // Desestructuramos el prop
+  const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
   const [mensajeError, setMensajeError] = useState("");
@@ -14,12 +15,11 @@ function Login({ onLoginSuccess }) {
     try {
       const respuesta = await api.post("/api/auth/login", { correo, password });
       const usuario = respuesta.data;
-
-      // GUARDADO PERSISTENTE:
       localStorage.setItem("usuarioSesion", JSON.stringify(usuario));
 
-      // Notificamos al componente padre
       onLoginSuccess(usuario);
+
+      navigate('/inicio');
     } catch (error) {
       setMensajeError(
         error.response?.data?.message || "Credenciales incorrectas",
