@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
-import './Herramientas.css'; // Puedes reutilizar los mismos estilos
+import './Autocuidado.css'; // Puedes reutilizar los mismos estilos
 
 export default function Autocuidado() {
   const [recursos, setRecursos] = useState([]);

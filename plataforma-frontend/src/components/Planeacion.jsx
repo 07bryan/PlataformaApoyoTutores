@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
 // Importa tus estilos para mantener consistencia
-import './Herramientas.css'; 
+import './Planeacion.css'; 
 
 export default function Planeacion() {
   const [recursos, setRecursos] = useState([]);
