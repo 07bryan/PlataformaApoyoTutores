@@ -3,21 +3,25 @@
    ========================================================= */
 
 :root {
-  /* Colores */
-  --color-primary: #7c3aed;
-  --color-primary-hover: #6d28d9;
-  --color-primary-soft: #f3e8ff;
+  /* Colores principales */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-soft: #eff6ff;
 
+  /* Fondos */
   --color-background: #f8fafc;
   --color-surface: #ffffff;
 
+  /* Texto */
   --color-text: #0f172a;
   --color-text-secondary: #64748b;
   --color-text-muted: #94a3b8;
 
+  /* Bordes */
   --color-border: #e2e8f0;
   --color-border-hover: #cbd5e1;
 
+  /* Estados */
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
