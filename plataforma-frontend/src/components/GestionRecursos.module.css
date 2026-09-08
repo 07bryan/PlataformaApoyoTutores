@@ -651,13 +651,15 @@
    TÍTULO DE LA PÁGINA
    ========================================================= */
 
-.adminContainer h1 {
+.adminContainer h2 {
+  margin: 0 0 20px;
+
   color: #2563eb;
 
   font-size: 28px;
   font-weight: 700;
 
-  letter-spacing: -0.5px;
+  line-height: 1.25;
 
-  margin-bottom: 20px;
+  letter-spacing: -0.5px;
 }
