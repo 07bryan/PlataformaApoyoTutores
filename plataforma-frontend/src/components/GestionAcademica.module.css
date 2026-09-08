@@ -1,145 +1,679 @@
+/* =========================================================
+   GESTIÓN ACADÉMICA
+   ========================================================= */
+
 .adminContainer {
-  padding: 20px;
-  color: #333;
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 8px 0 40px;
+
+  color: #0f172a;
 }
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.adminContainer h2 {
+  margin: 0 0 20px;
+
+  color: #2563eb;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
 
 .adminCard {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  width: 100%;
+
+  margin-bottom: 24px;
+  padding: 24px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04);
 }
+
+
+/* Títulos internos */
+
+.adminCard h3 {
+  margin: 0 0 18px;
+
+  color: #0f172a;
+
+  font-size: 17px;
+  font-weight: 650;
+
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
 
 .adminForm {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display: grid;
+
+  grid-template-columns:
+    minmax(240px, 2fr)
+    minmax(120px, 0.8fr)
+    minmax(120px, 0.8fr)
+    minmax(220px, 1.5fr)
+    auto;
+
+  align-items: end;
+
+  gap: 16px;
 }
 
-.adminForm input, .adminForm select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+/* Labels */
+
+.adminForm label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.4;
 }
+
+
+/* Inputs y selects */
+
+.adminForm input,
+.adminForm select {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* Placeholder */
+
+.adminForm input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* Hover */
+
+.adminForm input:hover,
+.adminForm select:hover {
+  border-color: #cbd5e1;
+}
+
+
+/* Focus */
+
+.adminForm input:focus,
+.adminForm select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* Botón guardar */
 
 .adminForm button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  background-color: #2563eb;
+
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
 }
+
+.adminForm button:hover {
+  background-color: #1d4ed8;
+
+  border-color: #1d4ed8;
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.adminForm button:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
 
 .userTable {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+
+  margin-top: 8px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  overflow: hidden;
 }
 
-.userTable th, .userTable td {
-  border: 1px solid #ddd;
-  padding: 12px;
+
+/* Celdas */
+
+.userTable th,
+.userTable td {
+  padding: 14px 16px;
+
   text-align: left;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  font-size: 14px;
 }
+
+
+/* Encabezado */
+
+.userTable th {
+  background-color: #f8fafc;
+
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+}
+
+
+/* Datos */
+
+.userTable td {
+  color: #334155;
+
+  vertical-align: middle;
+}
+
+
+/* Última fila */
+
+.userTable tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Hover */
+
+.userTable tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.userTable tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+
+/* =========================================================
+   BOTÓN EDITAR
+   ========================================================= */
+
 .btnEdit {
-    background-color: #f39c12; /* Naranja profesional */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  margin-right: 6px;
+
+  background-color: #eff6ff;
+
+  border: 1px solid #dbeafe;
+  border-radius: 7px;
+
+  color: #2563eb;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btnEdit:hover {
-    background-color: #e67e22;
+  background-color: #dbeafe;
+
+  border-color: #bfdbfe;
+
+  color: #1d4ed8;
 }
 
+
+/* =========================================================
+   BOTÓN ELIMINAR
+   ========================================================= */
+
 .btnDelete {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  background-color: #fef2f2;
+
+  border: 1px solid #fee2e2;
+  border-radius: 7px;
+
+  color: #dc2626;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btnDelete:hover {
-    background-color: #c0392b;
+  background-color: #fee2e2;
+
+  border-color: #fecaca;
+
+  color: #b91c1c;
 }
+
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
 
 .emptyState {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 48px 24px;
+
+  color: #64748b;
+
   text-align: center;
-  padding: 20px;
 }
+
+.emptyState p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   BOTÓN AGREGAR
+   ========================================================= */
 
 .btnAdd {
-  background-color: #28a745;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  background-color: #eff6ff;
+
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+
+  color: #2563eb;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-h2 {
-    font-size: 24px;
-    line-height: 118%;
-    letter-spacing: -0.24px;
-    margin: 0 0 8px;
-    font-family: var(--heading);
-    font-weight: 500;
-    color: #c084fc;
-} 
+.btnAdd:hover {
+  background-color: #dbeafe;
 
-/* CSS Module: Usa camelCase para las clases */
+  border-color: #bfdbfe;
+
+  color: #1d4ed8;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background-color: rgba(15, 23, 42, 0.45);
+
+  backdrop-filter: blur(3px);
 }
+
+
+/* Contenido del modal */
 
 .modalContent {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    width: 400px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  width: 100%;
+  max-width: 460px;
+
+  padding: 24px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+
+  box-shadow:
+    0 20px 40px rgba(15, 23, 42, 0.15);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
 }
+
+
+/* Título del modal */
+
+.modalContent h3 {
+  margin: 0 0 4px;
+
+  color: #0f172a;
+
+  font-size: 18px;
+  font-weight: 650;
+}
+
+
+/* Inputs del modal */
+
+.modalContent input,
+.modalContent select {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modalContent input:focus,
+.modalContent select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   ACCIONES DEL MODAL
+   ========================================================= */
 
 .modalActions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 8px;
 }
 
-.btnGuardar {
-    background-color: #27ae60;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+
+/* Cancelar */
 
 .btnCancelar {
-    background-color: #95a5a6;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #475569;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btnCancelar:hover {
+  background-color: #f8fafc;
+
+  border-color: #cbd5e1;
+
+  color: #0f172a;
+}
+
+
+/* Guardar */
+
+.btnGuardar {
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  background-color: #2563eb;
+
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btnGuardar:hover {
+  background-color: #1d4ed8;
+
+  border-color: #1d4ed8;
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .adminForm {
+    grid-template-columns:
+      repeat(2, minmax(200px, 1fr));
+  }
+
+  .adminForm button {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .adminContainer {
+    padding-bottom: 32px;
+  }
+
+  .adminCard {
+    padding: 18px;
+
+    border-radius: 12px;
+  }
+
+  .adminForm {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .adminForm button {
+    width: 100%;
+  }
+
+  .userTable {
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+
+  .userTable th,
+  .userTable td {
+    padding: 11px 12px;
+  }
+
+  .modalContent {
+    padding: 20px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .adminCard {
+    padding: 16px;
+  }
+
+  .modalOverlay {
+    padding: 12px;
+  }
+
+  .modalContent {
+    padding: 18px;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+
+  .btnCancelar,
+  .btnGuardar {
+    width: 100%;
+  }
 }
