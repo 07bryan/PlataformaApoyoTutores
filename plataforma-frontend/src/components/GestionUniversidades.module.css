@@ -1,93 +1,473 @@
+/* =========================================================
+   GESTIÓN DE UNIVERSIDADES
+   ========================================================= */
+
 .adminContainer {
-  padding: 20px;
-  color: #333;
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 8px 0 40px;
+
+  color: #0f172a;
 }
 
-.btnAdd {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 20px;
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.adminContainer h2 {
+  margin: 0 0 20px;
+
+  color: #2563eb;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.5px;
 }
+
+
+/* =========================================================
+   BOTÓN AGREGAR
+   ========================================================= */
+
+.btnAdd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  margin-bottom: 16px;
+
+  padding: 0 16px;
+
+  background-color: #2563eb;
+
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btnAdd:hover {
+  background-color: #1d4ed8;
+
+  border-color: #1d4ed8;
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+.btnAdd:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
 
 .userTable {
   width: 100%;
-  border-collapse: collapse;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
-.userTable th, .userTable td {
-  border: 1px solid #ddd;
-  padding: 12px;
+
+/* Encabezados y celdas */
+
+.userTable th,
+.userTable td {
+  padding: 14px 16px;
+
   text-align: left;
+
+  border-bottom: 1px solid #e2e8f0;
+
+  font-size: 14px;
 }
+
+
+/* Encabezado */
+
+.userTable th {
+  background-color: #f8fafc;
+
+  color: #475569;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+}
+
+
+/* Contenido */
+
+.userTable td {
+  color: #334155;
+
+  vertical-align: middle;
+}
+
+
+/* Última fila */
+
+.userTable tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Hover */
+
+.userTable tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.userTable tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+
+/* =========================================================
+   BOTÓN EDITAR
+   ========================================================= */
 
 .btnEdit {
-    background-color: #f39c12; /* Naranja profesional */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  margin-right: 6px;
+
+  background-color: #eff6ff;
+
+  border: 1px solid #dbeafe;
+  border-radius: 7px;
+
+  color: #2563eb;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btnEdit:hover {
-    background-color: #e67e22;
+  background-color: #dbeafe;
+
+  border-color: #bfdbfe;
+
+  color: #1d4ed8;
 }
+
+
+/* =========================================================
+   BOTÓN ELIMINAR
+   ========================================================= */
 
 .btnDelete {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  background-color: #fef2f2;
+
+  border: 1px solid #fee2e2;
+  border-radius: 7px;
+
+  color: #dc2626;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-/* Estilos para el Modal */
+.btnDelete:hover {
+  background-color: #fee2e2;
+
+  border-color: #fecaca;
+
+  color: #b91c1c;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
 .modalOverlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
+
+  inset: 0;
+
+  z-index: 1000;
+
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background-color: rgba(15, 23, 42, 0.45);
+
+  backdrop-filter: blur(3px);
 }
+
+
+/* Contenedor */
 
 .modalContent {
-  background: white;
-  padding: 25px;
-  border-radius: 8px;
-  min-width: 350px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 460px;
+
+  padding: 24px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+
+  box-shadow:
+    0 20px 40px rgba(15, 23, 42, 0.15);
+
   display: flex;
   flex-direction: column;
-  gap: 15px;
+
+  gap: 14px;
 }
 
-.modalContent input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
+
+/* Título */
+
+.modalContent h3 {
+  margin: 0 0 4px;
+
+  color: #0f172a;
+
+  font-size: 18px;
+  font-weight: 650;
+
+  line-height: 1.3;
 }
+
+
+/* Input */
+
+.modalContent input {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 10px 12px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modalContent input::placeholder {
+  color: #94a3b8;
+}
+
+.modalContent input:hover {
+  border-color: #cbd5e1;
+}
+
+.modalContent input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   ACCIONES DEL MODAL
+   ========================================================= */
 
 .modalActions {
   display: flex;
+
   justify-content: flex-end;
-  gap: 10px;
+
+  gap: 8px;
+
+  margin-top: 8px;
 }
 
-.modalActions button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
+
+/* Cancelar */
+
+.btnCancel {
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+
+  color: #475569;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.btnCancel { background-color: #6c757d; color: white; }
-.btnSave { background-color: #007bff; color: white; }
+.btnCancel:hover {
+  background-color: #f8fafc;
+
+  border-color: #cbd5e1;
+
+  color: #0f172a;
+}
+
+
+/* Guardar */
+
+.btnSave {
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  background-color: #2563eb;
+
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btnSave:hover {
+  background-color: #1d4ed8;
+
+  border-color: #1d4ed8;
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.2);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .adminContainer {
+    padding-bottom: 32px;
+  }
+
+  .userTable {
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+
+  .userTable th,
+  .userTable td {
+    padding: 11px 12px;
+  }
+
+  .modalContent {
+    padding: 20px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 12px;
+  }
+
+  .modalContent {
+    padding: 18px;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+
+  .btnCancel,
+  .btnSave {
+    width: 100%;
+  }
+}
