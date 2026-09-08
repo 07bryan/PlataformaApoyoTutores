@@ -5,44 +5,111 @@ export default function Sidebar({ rol }) {
 
   const cerrarSesion = () => {
     localStorage.removeItem('usuarioSesion');
-    window.location.href = '/login'; 
+    window.location.href = '/login';
   };
+
+  const esRutaActiva = (ruta) => location.pathname === ruta;
+
+  const esAdministrador = rol === 'ADMIN' || rol === 'SUPER_ADMIN';
 
   return (
     <aside className="sidebar">
+
+      {/* LOGO */}
       <div className="sidebar-header">
         <h2>TutorDigital</h2>
       </div>
+
+      {/* NAVEGACIÓN */}
       <nav className="sidebar-nav">
-        <Link to="/inicio" className={location.pathname === '/inicio' ? 'active' : ''}>Inicio</Link>
-        <Link to="/herramientas" className={location.pathname === '/herramientas' ? 'active' : ''}>Material para tutorías</Link>
-        <Link to="/autocuidado" className={location.pathname === '/autocuidado' ? 'active' : ''}>Autocuidado</Link>
-        <Link to="/planeacion" className={location.pathname === '/planeacion' ? 'active' : ''}>Herramientas Pedagógicas</Link>
 
+        {/* SECCIÓN PRINCIPAL */}
+        <div className="nav-section">
 
+          <span className="nav-section-title">
+            Principal
+          </span>
 
-        {/* --- SECCIÓN ADMINISTRADOR --- */}
-        {(rol === 'ADMIN' || rol === 'SUPER_ADMIN') && (
-          <>
-            <hr /> {/* Separador visual */}
-            <Link to="/gestion-academica" className={location.pathname === '/gestion-academica' ? 'active' : ''}>
+          <Link
+            to="/inicio"
+            className={esRutaActiva('/inicio') ? 'active' : ''}
+          >
+            Inicio
+          </Link>
+
+          <Link
+            to="/herramientas"
+            className={esRutaActiva('/herramientas') ? 'active' : ''}
+          >
+            Material para tutorías
+          </Link>
+
+          <Link
+            to="/autocuidado"
+            className={esRutaActiva('/autocuidado') ? 'active' : ''}
+          >
+            Autocuidado
+          </Link>
+
+          <Link
+            to="/planeacion"
+            className={esRutaActiva('/planeacion') ? 'active' : ''}
+          >
+            Herramientas Pedagógicas
+          </Link>
+
+        </div>
+
+        {/* SECCIÓN ADMINISTRACIÓN */}
+        {esAdministrador && (
+          <div className="nav-section">
+
+            <span className="nav-section-title">
+              Administración
+            </span>
+
+            <Link
+              to="/gestion-academica"
+              className={
+                esRutaActiva('/gestion-academica') ? 'active' : ''
+              }
+            >
               Gestión Académica
             </Link>
-            <Link to="/gestion-universidades" className={location.pathname === '/gestion-universidades' ? 'active' : ''}>
+
+            <Link
+              to="/gestion-universidades"
+              className={
+                esRutaActiva('/gestion-universidades') ? 'active' : ''
+              }
+            >
               Gestión Universidades
             </Link>
-            <Link to="/gestion-recursos" className={location.pathname === '/gestion-recursos' ? 'active' : ''}>
+
+            <Link
+              to="/gestion-recursos"
+              className={
+                esRutaActiva('/gestion-recursos') ? 'active' : ''
+              }
+            >
               Gestión Recursos
             </Link>
-          </>
+
+          </div>
         )}
+
       </nav>
-      {/* --- BOTÓN DE CIERRE DE SESIÓN --- */}
+
+      {/* CERRAR SESIÓN */}
       <div className="sidebar-footer">
-        <button onClick={cerrarSesion} className="btn-logout">
-          Cerrar Sesión
+        <button
+          onClick={cerrarSesion}
+          className="btn-logout"
+        >
+          Cerrar sesión
         </button>
       </div>
+
     </aside>
   );
 }
