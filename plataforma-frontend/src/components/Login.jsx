@@ -61,13 +61,13 @@ function Login({ onLoginSuccess }) {
 
         return;
       }
-      
+
       setServidorIniciando(true);
       setSegundos(60);
 
       let tiempoTranscurrido = 0;
 
-      while (tiempoTranscurrido < 60) {
+      while (tiempoTranscurrido < 120) {
         await new Promise((resolve) => {
           setTimeout(resolve, 5000);
         });
