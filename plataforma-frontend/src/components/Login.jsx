@@ -67,7 +67,10 @@ function Login({ onLoginSuccess }) {
 
       let tiempoTranscurrido = 0;
 
-      while (tiempoTranscurrido < 120) {
+      while (tiempoTranscurrido < 120
+
+        
+      ) {
         await new Promise((resolve) => {
           setTimeout(resolve, 5000);
         });
