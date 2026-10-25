@@ -45,7 +45,10 @@ export default function Herramientas() {
             <p>Material disponible</p>
             <button
               className="btn-secondary"
-              onClick={() => setUniversidadSeleccionada(univ)}
+              onClick={() => {
+                console.log("Universidad seleccionada:", univ);
+                setUniversidadSeleccionada(univ);
+              }}
             >
               Ver Recursos
             </button>
