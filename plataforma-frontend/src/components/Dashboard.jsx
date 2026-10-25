@@ -41,7 +41,11 @@ export default function Dashboard() {
             <h3>{w.titulo}</h3>
             <p>{w.contenido}</p>
             {w.ruta && (
-              <span className={styles.linkText}>Ir a {w.titulo} →</span>
+              <a href={ruta} className="card-link">
+                <span>Ir a</span>
+                <span>{titulo}</span>
+                <span aria-hidden="true">→</span>
+              </a>
             )}
           </div>
         ))}
