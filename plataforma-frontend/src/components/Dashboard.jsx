@@ -41,9 +41,16 @@ export default function Dashboard() {
             <h3>{w.titulo}</h3>
             <p>{w.contenido}</p>
             {w.ruta && (
-              <a href={ruta} className="card-link">
+              <a
+                href={w.ruta}
+                className="card-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(w.ruta);
+                }}
+              >
                 <span>Ir a</span>
-                <span>{titulo}</span>
+                <span>{w.titulo}</span>
                 <span aria-hidden="true">→</span>
               </a>
             )}
