@@ -85,10 +85,10 @@ function App() {
                 element={<Herramientas />}
               />
 
-              {/*<Route
+              <Route
                 path="/autocuidado"
                 element={<Autocuidado />}
-              />*/}
+              />
 
               <Route
                 path="/planeacion"

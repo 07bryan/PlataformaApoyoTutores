@@ -11,12 +11,12 @@ export default function Dashboard() {
       ruta: "/herramientas",
       color: "#2563eb",
     },
-    /*{
+    {
       titulo: "Autocuidado",
       contenido: "Encuentra recursos para el bienestar y cuidado del tutor.",
       ruta: "/autocuidado",
       color: "#10b981",
-    },*/
+    },
     {
       titulo: "Herramientas Pedagógicas",
       contenido:
