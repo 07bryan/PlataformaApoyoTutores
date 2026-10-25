@@ -8,27 +8,14 @@ export default function Herramientas() {
   const [busquedaMateria, setBusquedaMateria] = useState("");
 
   useEffect(() => {
-    console.log(
-      "[RENDER STATE] universidadSeleccionada =",
-      universidadSeleccionada,
-    );
-  }, [universidadSeleccionada]);
-
-  useEffect(() => {
     cargarRecursos();
   }, []);
 
   const cargarRecursos = async () => {
     try {
       const res = await api.get("/api/recursos/listar");
-
-      const datos = Array.isArray(res.data) ? res.data : [];
-
-      const academicos = datos.filter(
-        (r) => r.categoria === "MATERIAL_PARA_TUTORIAS",
-      );
-
-      setRecursos(academicos);
+      const academicos = res.data.filter(r => r.categoria === 'MATERIAL_PARA_TUTORIAS');
+      setRecursos(res.data);
     } catch (error) {
       console.error("Error al cargar recursos", error);
       setRecursos([]);
@@ -53,7 +40,6 @@ export default function Herramientas() {
             <button
               className="btn-secondary"
               onClick={() => {
-                console.log("Universidad seleccionada:", univ);
                 setUniversidadSeleccionada(univ);
               }}
             >
@@ -67,7 +53,6 @@ export default function Herramientas() {
         <div className="seccion-recursos-container">
           <div className="header-tabla">
             <h3>Recursos de {universidadSeleccionada}</h3>
-            <p>DEBUG: {universidadSeleccionada}</p>
             <div className="controles-tabla">
               <input
                 className="input-filtro"
