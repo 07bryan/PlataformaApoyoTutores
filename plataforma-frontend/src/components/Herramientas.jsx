@@ -60,6 +60,7 @@ export default function Herramientas() {
         <div className="seccion-recursos-container">
           <div className="header-tabla">
             <h3>Recursos de {universidadSeleccionada}</h3>
+            <p>DEBUG: {universidadSeleccionada}</p>
             <div className="controles-tabla">
               <input
                 className="input-filtro"
