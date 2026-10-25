@@ -44,12 +44,12 @@ export default function Sidebar({ rol }) {
             Material para tutorías
           </Link>
 
-          <Link
+          {/*<Link
             to="/autocuidado"
             className={esRutaActiva('/autocuidado') ? 'active' : ''}
           >
             Autocuidado
-          </Link>
+          </Link>*/}
 
           <Link
             to="/planeacion"
