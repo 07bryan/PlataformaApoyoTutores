@@ -8,6 +8,13 @@ export default function Herramientas() {
   const [busquedaMateria, setBusquedaMateria] = useState("");
 
   useEffect(() => {
+    console.log(
+      "[RENDER STATE] universidadSeleccionada =",
+      universidadSeleccionada,
+    );
+  }, [universidadSeleccionada]);
+
+  useEffect(() => {
     cargarRecursos();
   }, []);
 
